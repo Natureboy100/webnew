@@ -1,4 +1,7 @@
-CREATE TABLE if not exists medicine(med_id BIGINT,inputfullname VARCHAR(500),mType VARCHAR(500),mDescription VARCHAR(500),mPrice INT,mQuantity VARCHAR(500),mCompany VARCHAR(500),mDose INT);
+CREATE TABLE if not exists medicine
+(med_id BIGINT auto_increment,inputfullname VARCHAR(500),mType VARCHAR(500),mDescription VARCHAR(500),mPrice INT,mQuantity VARCHAR(500),mCompany VARCHAR(500),mDose INT
+    ,constraint medicine_pk
+    primary key (med_id));
 
 INSERT INTO medicine VALUES('1','Varivax','Ea14vM6stV','Aquamarine',44,'Yearly','Leadertech Consulting',3);
 INSERT INTO medicine VALUES('2','Herceptin','BmawOLVeVb','Cerise',31,'Daily','CarMax',1);

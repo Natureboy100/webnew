@@ -67,7 +67,7 @@
 
 <h1 id="h1">Add Medicine</h1>
 name, type, description, price, quantity (i.e total no of availability), usage, Company name, dose etc.
-<form class="col-md-3 col-md-offset-3 signUpForm">
+<form class="col-md-3 col-md-offset-3 signUpForm" method="post">
     <div class="form-row ">
         <label for="mName">Medicine Name</label>
         <input type="text" class="form-control" id="inputfullname" name="inputfullname">
@@ -101,7 +101,7 @@ name, type, description, price, quantity (i.e total no of availability), usage, 
         <input type="text" class="form-control" id="mDose" name="mDose">
     </div>
     <br/>
-    <input type="submit" name="submit" value="Submit">
+    <input type="submit" name="submit" value="submit">
     <br/>
     Medicine id <br/> <input type="text" id="Dose" name="Dose">
     <br/>
@@ -112,52 +112,47 @@ name, type, description, price, quantity (i.e total no of availability), usage, 
 </html>
 
 <?php
-include (__DIR__ ."Database/server_configuration.php");
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname="project";
-
-// Create connection
-$conn = new mysqli($servername, $username, $password);
-
-
-$database="database.php";
-$name=POST_['inputfullname'];
-$type=POST_['mType'];
-$description=POST_['mDescription'];
-$price=POST_['mPrice'];
-$quantity=POST_['mQuantity'];
-$usage=POST_['mUsage'];
-$company=POST_['mCompany'];
-$dose=POST_['mDose'];
-
-
+include ("../Database/database.php");
 //on Clicking Submit button, new data will be inserted,
 //on clicking Update button Data will be updates
-
-if (isset($_POST['Submit'])) {
+// Create connection
+$conn = OpenCon();
+if (isset($_POST['submit'])) {
+$name=$_POST['inputfullname'];
+    $type=$_POST['mType'];
+    $description=$_POST['mDescription'];
+    $price=$_POST['mPrice'];
+    $quantity=$_POST['mQuantity'];
+    $usage=$_POST['mUsage'];
+    $company=$_POST['mCompany'];
+    $dose=$_POST['mDose'];
     # Publish-button was clicked
-    $sql = "INSERT INTO medicine ('inputfullname', 'mType', 'mDescription', 'mPrice', 'mQuantity', 'mUsage', 'mCompany', 'mDose')
-VALUES ($name,$type,$description,$price,$quantity,$usage,$company,$dose)";
+    $sql = "INSERT INTO medicine ( inputfullname, mType, mDescription, mPrice, mQuantity, mCompany, mDose)
+VALUES ('$name','$type','$description',$price,'$quantity','$company',$dose)";
+    $result=$conn->query($sql);
+    if ($conn->query($sql) == TRUE) {
+        echo "New record created successfully";
+    }
+    else {
+        echo "Error: " . $sql . "<br>" . $conn->error;
+    }
+     $conn->close();}
 
-if ($conn->query($sql) === TRUE) {
-  echo "New record created successfully";
-}
 
-else {
-  echo "Error: " . $sql . "<br>" . $conn->error;
-}
-}
-elseif (isset($_POST['Update'])) {
+
+
+
+
+
+/*elseif (isset($_POST['Update'])) {
     # Update-button was clicked
-    $sql = "UPDATE medicine SET  inputfullname=$name, mType=$type, mDescription=$description, mPrice=$price, mQuantity=$quantity,mUsage=$usage, mCompany=$company, mDose=$dose;";
+    $sql = "UPDATE medicine SET  inputfullname='$name', mType='$type, mDescription=$description, mPrice=$price, mQuantity=$quantity,mUsage=$usage, mCompany=$company, mDose=$dose;";
 if ($conn->query($sql) === TRUE) {
     echo "Record updated successfully";
   }
   else {
     echo "Error updating record: " . $conn->error;
-  }
-  }
-  $conn->close();
+  }*/
+
+
 
