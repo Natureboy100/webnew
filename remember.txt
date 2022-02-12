@@ -1,0 +1,3 @@
+login btns ke darmayan gaps khtm
+sign up form _> text color black remove + submit btn center
+profile form ko center karna
