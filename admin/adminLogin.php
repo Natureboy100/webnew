@@ -16,16 +16,16 @@ session_start()
         <!-- Tabs Titles -->
 
 
-              <div class="fadeIn first">
-                <img src="../styling%20files/pharma.webp" id="icon" alt="User Icon" />
-              </div>
+        <div class="fadeIn first">
+            <img src="../styling%20files/pharma.webp" id="icon" alt="User Icon"/>
+        </div>
 
         <!-- Login Form -->
-        <form>
+        <form method="POST">
             <input type="text" id="login" class="fadeIn second" name="login" placeholder="login">
-            <input type="text" id="password" class="fadeIn third" name="login" placeholder="password">
-            <input type="submit" class="fadeIn fourth" value="Log In">
-            <input type="button" value="Sign Up">
+            <input type="text" id="password" class="fadeIn third" name="password" placeholder="password">
+            <input type="submit" name="bLogin" class="fadeIn fourth" value="Log In">
+            <input type="button" name="bSignUp" onclick="window.location.href='admin_signup.php'" value="Sign Up">
         </form>
 
         <!-- Remind Passowrd -->
@@ -36,13 +36,25 @@ session_start()
     </div>
 </div>
 <?php
-if ($result->num_rows > 0) {
-    // output data of each row
-    while($row = $result->fetch_assoc()) {
-        header("Location:seller_panel.php");
+include("../Database/database.php");
+$conn = OpenCon();
+
+
+if (isset($_POST["bLogin"])) {
+    $name = $_POST["login"];
+    $password = $_POST["password"];
+
+    $sql = "SELECT * FROM admin WHERE username='$name' and password='$password'  LIMIT 1";
+    $result = $conn->query($sql);
+    if ($result->num_rows > 0) {
+        // output data of each row
+        while ($row = $result->fetch_assoc()) {
+            header("Location:admin_panel.php");
+        }
+    } else {
+        echo "Your account does not Exist";
     }
-} else {
-    echo "Your account does not Exist";
+
 }
 CloseCon($conn);
 ?>

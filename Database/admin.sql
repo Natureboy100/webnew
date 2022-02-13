@@ -1,4 +1,6 @@
-CREATE TABLE if not exists admin(id BIGINT,fullName VARCHAR(500),username VARCHAR(500),password VARCHAR(500),address VARCHAR(500),age INT,email VARCHAR(500),phoneNumber VARCHAR(500));
+CREATE TABLE if not exists admin(id BIGINT,fullName VARCHAR(500),username VARCHAR(500),password VARCHAR(500),address VARCHAR(500),age INT,email VARCHAR(500),phoneNumber VARCHAR(500)
+,constraint admin_pk
+    primary key (id));
 
 INSERT INTO admin VALUES('1','Tyson Latham','Tyson','Y5Bv1lQJTm','Thorndike   Walk, 352',89,'Tyson_Latham152@nanoff.biz','7-010-788-8303');
 INSERT INTO admin VALUES('2','Tom Drake','Tom','neGZPyGyR6','Falconberg   Boulevard, 6060',49,'Tom_Drake8491@brety.org','6-661-662-3230');
