@@ -30,15 +30,17 @@
 <h1>Update Medicine Information</h1>
 
 <form class="col-md-4 col-md-offset-4 signUpForm" id="admin_profile_form">
-    <label for="NameofMedicine">Enter The Name Of The Medicine You Want To Edit: </label>
+    <label for="NameofMedicine">Enter previous The Name Of The Medicine You Want To Edit: </label>
+    <input type="text" name="oldNameofMedicine" id="oldNameofMedicine">
+
+    <label for="NameofMedicine">Enter New The Name Of The Medicine You Want To Edit: </label>
     <input type="text" name="NameofMedicine" id="NameofMedicine">
-    <input type="submit" name="bNameofMedicine" value="Verify Medicine Exists">
+    <input type="submit" name="bNameofMedicine" value="Update Medicine Name">
 
     <label for="typeOfMedicine">Update Type Of Medicine: </label>
     <input type="text" name="typeOfMedicine" id="typeOfMedicine">
     <input type="submit" name="btypeOfMedicine" value="Update Type">
 
-    <h3>Update Description</h3>
 
     <label for="Description">Update Description: </label>
     <input type="text" name="Password" id="Description">
@@ -55,19 +57,13 @@
     <input type="submit" name="bUsage" value="Update Usage">
 
 
-    <h2>Current Company Name: <?php echo "Geno Smith" ?></h2>
-
-
-    <label for="CompanyName">Update Name: </label>
+    <label for="CompanyName">Update Company Name: </label>
     <input type="text" name="CompanyName" id="CompanyName">
     <input type="submit" name="bCompanyName" value="Update Name">
 
-    <label for="DoseDescription">Update Name: </label>
+    <label for="DoseDescription">Update Dose: </label>
     <input type="text" name="DoseDescription" id="DoseDescription">
     <input type="submit" name="bDoseDescription" value="Update Dose">
-
-    <h3>Current Quantity: <?php echo "19" ?></h3>
-
 
     <label for="quantity">Update Quantity: </label>
     <input type="number" name="quantity" id="quantity">
@@ -79,23 +75,61 @@
 
 </body>
 </html>
-<?phpif (isset($_POST['submit'])) {
-$name=$_POST['NameofMedicine'];
-$type=$_POST['typeOfMedicine'];
-$description=$_POST['bDescription'];
-$price=$_POST['mPrice'];
-$quantity=$_POST['mQuantity'];
-$usage=$_POST['mUsage'];
-$company=$_POST['mCompany'];
-$dose=$_POST['mDose'];
+<?php
+include ("../Database/database.php");
+$conn = OpenCon();
+$name = $_POST['oldNameofMedicine'];
+$inputfullname = $_POST['NameofMedicine'];
+$type = $_POST['typeOfMedicine'];
+$description = $_POST['bDescription'];
+$price = $_POST['mPrice'];
+$quantity = $_POST['mQuantity'];
+$usage = $_POST['mUsage'];
+$company = $_POST['mCompany'];
+$dose = $_POST['mDose'];
 # Publish-button was clicked
-$sql = "INSERT INTO medicine ( inputfullname, mType, mDescription, mPrice, mQuantity, mCompany, mDose)
-VALUES ('$name','$type','$description',$price,'$quantity','$company',$dose)";
-$result=$conn->query($sql);
-if ($conn->query($sql) == TRUE) {
-    echo "New record created successfully";
+if (isset($_POST['bNameofMedicine'])) {
+    # Publish-button was clicked
+    $sql = "UPDATE `medicine` SET `inputfullname`='$name' WHERE `inputfullname`='$inputfullname'";
+    runQuery($sql, $conn);
+} elseif (isset($_POST['save'])) {
+    # Save-button was clicked
+    $sql = "UPDATE `medicine` SET `mType`='$typeOfMedicine' WHERE `inputfullname`='$inputfullname";
+    runQuery($sql, $conn);
+} elseif (isset($_POST['save'])) {
+    # Save-button was clicked
+    $sql = "UPDATE `medicine` SET `mDescription`='$Description' WHERE `inputfullname`='$inputfullname'";
+    runQuery($sql, $conn);
+} elseif (isset($_POST['save'])) {
+    # Save-button was clicked
+    $sql = "UPDATE `medicine` SET `mPrice`='$MedicinePrice' WHERE `inputfullname`='$inputfullname'";
+    runQuery($sql, $conn);
+} elseif (isset($_POST['save'])) {
+    # Save-button was clicked
+    $sql = "UPDATE `medicine` SET `mQuantity`=$quantity WHERE `inputfullname`='$inputfullname'";
+    runQuery($sql, $conn);
+} elseif (isset($_POST['save'])) {
+    # Save-button was clicked
+    $sql = "UPDATE `medicine` SET `mCompany`='$CompanyName' WHERE `inputfullname`='$inputfullname'";
+    runQuery($sql, $conn);
+} elseif (isset($_POST['save'])) {
+    # Save-button was clicked
+    $sql = "UPDATE `medicine` SET `mDose`='$DoseDescription' WHERE `inputfullname`='$inputfullname'";
+    runQuery($sql, $conn);
+} elseif (isset($_POST['save'])) {
+    # Save-button was clicked
+    $sql = "UPDATE `medicine` SET `mDose`='$DoseDescription' WHERE `inputfullname`='$inputfullname'";
+    runQuery($sql, $conn);
 }
-else {
-    echo "Error: " . $sql . "<br>" . $conn->error;
+
+function runQuery($sql,$conn) {
+    $result=$conn->query($sql);
+    if ($conn->query($sql) == TRUE) {
+        echo "New record created successfully";
+    }
+    else {
+        echo "Error: " . $sql . "<br>" . $conn->error;
+    }
 }
+
 $conn->close();?>
