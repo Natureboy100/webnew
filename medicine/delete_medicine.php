@@ -16,17 +16,27 @@
 </head>
 <body>
 <h1>Delete Medicine</h1>
-<form action="#">
-    <input type="checkbox" class="m1" name="m1" value="m1" >
-    <label for="m1" class="m1"> Panadol</label><br>
-    <input type="checkbox" class="m2" name="m2" value="m2">
-    <label for="vehicle2" class="m2"> Disprine</label><br>
-    <input type="checkbox" class="m3" " name="m3" value="m3">
-    <label for="vehicle3" class="m3"> loprin</label><br><br>
-    <input type="submit" name="mDeleteBtn" value="Delete">
+<form method="post" >
+    <input type="text" class="form-control" id="mType" name="mType">
+    <input type="submit" name="mDeleteBtn">
 </form>
 </body>
 </html>
+
+<?php
+include ("../Database/database.php");
+$conn = OpenCon();
+$type=$_POST['mType'];
+$sql="DELETE from medicine WHERE inputfullname='$type'";
+$result=$conn->query($sql);
+if ($conn->query($sql) == TRUE) {
+    echo "'$type' record deleted successfully";
+}
+else {
+    echo "Error: " . $sql . "<br>" . $conn->error;
+}
+mysqli_close($conn);
+;?>
 
 
 
