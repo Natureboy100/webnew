@@ -35,16 +35,40 @@
 
 
         $sql = "SELECT * FROM medicine WHERE mCompany='$search' ";
-        $result = $conn->query($sql);
-        if ($result->num_rows > 0) {
-            // output data of each row
-            while($row = $result->fetch_assoc()) {
-                header("Location:seller_panel.php");
+        if ($result = mysqli_query($conn, $sql)) {
+            if (mysqli_num_rows($result) > 0) {
+                echo "<table border='1' border-collapse='collapse'>";
+                echo "<tr border='1' border-collapse='collapse'>";
+                echo "<th>id</th>";
+                echo "<th>inputfullname</th>";
+                echo "<th>mType</th>";
+                echo "<th>mDescription</th>";
+                echo "<th>mPrice</th>";
+                echo "<th>mQuantity</th>";
+                echo "<th>mCompany</th>";
+                echo "<th>mDose</th>";
+                echo "</tr>";
+                while ($row = mysqli_fetch_array($result)) {
+                    echo "<tr>";
+                    echo "<td>" . $row['med_id'] . "</td>";
+                    echo "<td>" . $row['inputfullname'] . "</td>";
+                    echo "<td>" . $row['mType'] . "</td>";
+                    echo "<td>" . $row['mDescription'] . "</td>";
+                    echo "<td>" . $row['mPrice'] . "</td>";
+                    echo "<td>" . $row['mQuantity'] . "</td>";
+                    echo "<td>" . $row['mCompany'] . "</td>";
+                    echo "<td>" . $row['mDose'] . "</td>";
+                    echo "</tr>";
+                }
+                echo "</table>";
+                // Close result set
+                mysqli_free_result($result);
+            } else {
+                echo "No records matching your query were found.";
             }
         } else {
-            echo "Your account does not Exist";
+            echo "ERROR: Could not able to execute $sql. " . mysqli_error($conn);
         }
-
     }
 
 

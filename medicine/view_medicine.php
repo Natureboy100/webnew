@@ -105,7 +105,7 @@
             echo "No records matching your query were found.";
         }
     } else{
-        echo "ERROR: Could not able to execute $sql. " . mysqli_error($link);
+        echo "ERROR: Could not able to execute $sql. " . mysqli_error($conn);
     }
 
     CloseCon($conn);

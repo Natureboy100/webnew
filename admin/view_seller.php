@@ -24,40 +24,40 @@ include ("../Database/database.php");
 $conn = OpenCon();
 
 
-$sql = "SELECT * FROM seller";
-if($result = mysqli_query($conn, $sql)){
-    if(mysqli_num_rows($result) > 0){
-        echo "<table>";
-        echo "<tr>";
-        echo "<th>id</th>";
-        echo "<th>fullName</th>";
-        echo "<th>username</th>";
-        echo "<th>password</th>";
-        echo "<th>address</th>";
-        echo "<th>age</th>";
-        echo "<th>email</th>";
-        echo "<th>phoneNumber</th>";
-        echo "</tr>";
-        while($row = mysqli_fetch_array($result)){
+    $sql = "SELECT * FROM seller";
+    if($result = mysqli_query($conn, $sql)){
+        if(mysqli_num_rows($result) > 0){
+            echo "<table>";
             echo "<tr>";
-            echo "<td>" . $row['id'] . "</td>";
-            echo "<td>" . $row['fullName'] . "</td>";
-            echo "<td>" . $row['username'] . "</td>";
-            echo "<td>" . $row['password'] . "</td>";
-            echo "<td>" . $row['address'] . "</td>";
-            echo "<td>" . $row['age'] . "</td>";
-            echo "<td>" . $row['email'] . "</td>";
-            echo "<td>" . $row['phoneNumber'] . "</td>";
+            echo "<th>id</th>";
+            echo "<th>inputfullname</th>";
+            echo "<th>mType</th>";
+            echo "<th>mDescription</th>";
+            echo "<th>mPrice</th>";
+            echo "<th>mQuantity</th>";
+            echo "<th>mCompany</th>";
+            echo "<th>mDose</th>";
             echo "</tr>";
+            while($row = mysqli_fetch_array($result)){
+                echo "<tr>";
+                echo "<td>" . $row['med_id'] . "</td>";
+                echo "<td>" . $row['inputfullname'] . "</td>";
+                echo "<td>" . $row['mType'] . "</td>";
+                echo "<td>" . $row['mDescription'] . "</td>";
+                echo "<td>" . $row['mPrice'] . "</td>";
+                echo "<td>" . $row['mQuantity'] . "</td>";
+                echo "<td>" . $row['mCompany'] . "</td>";
+                echo "<td>" . $row['mDose'] . "</td>";
+                echo "</tr>";
+            }
+            echo "</table>";
+            // Close result set
+            mysqli_free_result($result);
+        } else{
+            echo "No records matching your query were found.";
         }
-        echo "</table>";
-        // Close result set
-        mysqli_free_result($result);
     } else{
-        echo "No records matching your query were found.";
-    }
-} else{
-    echo "ERROR: Could not able to execute $sql. " . mysqli_error($conn);
+        echo "ERROR: Could not able to execute $sql. " . mysqli_error($conn);
 }
 
 CloseCon($conn);
