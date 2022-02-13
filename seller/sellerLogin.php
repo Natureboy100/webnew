@@ -24,7 +24,7 @@ session_start()
         <form method="post" action=sellerLogin.php>
             <input type="text" id="login" class="fadeIn second" name="login" placeholder="login">
             <input type="text" id="password" class="fadeIn third" name="password" placeholder="password">
-            <input type="submit" class="fadeIn fourth" value="Log In" name="submit">
+            <input type="submit" class="fadeIn fourth" value="Log In" name="bLogin">
             <input type="button" value="Sign Up" onclick="window.location.href='../signupform.php'" >
         </form>
 
@@ -40,11 +40,22 @@ session_start()
     $conn = OpenCon();
 
 
+    if (isset($_POST["bLogin"])) {
+        $name = $_POST["login"];
+        $password = $_POST["password"];
 
-    $name=$_POST["login"];
-    $password=$_POST["password"];
-    $sql="SELECT * FROM seller WHERE username='$name' and password='$password'  LIMIT 1";
-    $result = $conn->query($sql);
+        $sql = "SELECT * FROM seller WHERE username='$name' and password='$password'  LIMIT 1";
+        $result = $conn->query($sql);
+        if ($result->num_rows > 0) {
+            // output data of each row
+            while($row = $result->fetch_assoc()) {
+                header("Location:seller_panel.php");
+            }
+        } else {
+            echo "Your account does not Exist";
+        }
+
+    }
 /* $p=is_null($result['username']);
  $u=is_null($result['password']);
  if ( $p|| $u) {
@@ -60,15 +71,7 @@ session_start()
     */
 
 
-if ($result->num_rows > 0) {
-    // output data of each row
-    while($row = $result->fetch_assoc()) {
-        header("Location:seller_panel.php");
-    }
-} else {
-    echo "Your account does not Exist";
-}
-    CloseCon($conn);
+        CloseCon($conn);
 ?>
 </body>
 </html>

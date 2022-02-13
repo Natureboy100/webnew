@@ -1,5 +1,7 @@
 /*script generated for free with OnlineDataGenerator available at: https://www.onlinedatagenerator.com */
-CREATE TABLE if not exists seller (id BIGINT,fullName VARCHAR(500),username VARCHAR(500),password VARCHAR(500),address VARCHAR(500),age INT,email VARCHAR(500),phoneNumber VARCHAR(500));
+CREATE TABLE if not exists seller (id BIGINT,fullName VARCHAR(500),username VARCHAR(500),password VARCHAR(500),address VARCHAR(500),age INT,email VARCHAR(500),phoneNumber VARCHAR(500)
+                                  ,constraint seller_pk
+                                   primary key (id));
 
 INSERT INTO seller VALUES('1','Nicholas Snell','Nicholas','8FfI8RT3X4','Canning  Walk, 6380',26,'Nicholas_Snell7301@sveldo.biz','2-345-230-0176');
 INSERT INTO seller VALUES('2','Domenic Noon','Domenic','nnNGml5Ann','Cephas  Street, 2977',20,'Domenic_Noon2618@nanoff.biz','0-412-857-6350');
