@@ -24,18 +24,18 @@
 </html>
 
 <?php
-include ("../Database/database.php");
-$conn = OpenCon();
-$type=$_POST['mType'];
-$sql="DELETE from medicine WHERE inputfullname='$type'";
-$result=$conn->query($sql);
-if ($conn->query($sql) == TRUE) {
-    echo "'$type' record deleted successfully";
-}
-else {
-    echo "Error: " . $sql . "<br>" . $conn->error;
-}
-mysqli_close($conn);
+    include ("../Database/database.php");
+    $conn = OpenCon();
+    $type=$_POST['mType'];
+    $sql="DELETE from medicine WHERE inputfullname='$type'";
+    $result=$conn->query($sql);
+    if ($conn->query($sql) == TRUE) {
+        echo "'$type' record deleted successfully";
+    }
+    else {
+        echo "Error: " . $sql . "<br>" . $conn->error;
+    }
+    mysqli_close($conn);
 ;?>
 
 
