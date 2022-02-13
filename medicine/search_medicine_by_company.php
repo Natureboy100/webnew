@@ -14,6 +14,15 @@
             margin: 0 auto;
             margin-top: 50px;
         }
+        table,
+        th,
+        td {
+            padding: 10px;
+            border: 1px solid black;
+            border-collapse: collapse;
+            margin: 0 auto;
+        }
+
     </style>
 
 </head>
@@ -37,8 +46,8 @@
         $sql = "SELECT * FROM medicine WHERE mCompany='$search' ";
         if ($result = mysqli_query($conn, $sql)) {
             if (mysqli_num_rows($result) > 0) {
-                echo "<table border='1' border-collapse='collapse'>";
-                echo "<tr border='1' border-collapse='collapse'>";
+                echo "<table>";
+                echo "<tr>";
                 echo "<th>id</th>";
                 echo "<th>inputfullname</th>";
                 echo "<th>mType</th>";
