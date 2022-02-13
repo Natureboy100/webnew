@@ -50,4 +50,5 @@ INSERT INTO sales VALUES(1,'Novolin','10/2/7555',17,3,'Sylvia');
 INSERT INTO sales VALUES(1,'Risperdal','10/12/0751',4,5,'Charlize');
 INSERT INTO sales VALUES(4,'Lasix','6/13/7454',18,6,'Angel');
 INSERT INTO sales VALUES(2,'Emend','1/29/9609',5,6,'Javier');
+INSERT INTO sales VALUES(4,'Midodrine','11/14/8283',17,2,'Joseph');
 
