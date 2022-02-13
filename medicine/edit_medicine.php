@@ -29,12 +29,12 @@
 <body>
 <h1>Update Medicine Information</h1>
 
-<form class="col-md-4 col-md-offset-4 signUpForm" id="admin_profile_form">
-    <label for="NameofMedicine">Enter previous The Name Of The Medicine You Want To Edit: </label>
+<form class="col-md-4 col-md-offset-4 signUpForm" id="admin_profile_form" method="post">
+    <label for="NameofMedicine">Enter The Orignal Name Of The Medicine You Want To Edit: </label>
     <input type="text" name="oldNameofMedicine" id="oldNameofMedicine">
 
     <label for="NameofMedicine">Enter New The Name Of The Medicine You Want To Edit: </label>
-    <input type="text" name="NameofMedicine" id="NameofMedicine">
+    <input type="text" name="newNameofMedicine" id="newNameofMedicine">
     <input type="submit" name="bNameofMedicine" value="Update Medicine Name">
 
     <label for="typeOfMedicine">Update Type Of Medicine: </label>
@@ -79,7 +79,7 @@
 include ("../Database/database.php");
 $conn = OpenCon();
 $name = $_POST['oldNameofMedicine'];
-$inputfullname = $_POST['NameofMedicine'];
+$inputfullname = $_POST['newNameofMedicine'];
 $type = $_POST['typeOfMedicine'];
 $description = $_POST['bDescription'];
 $price = $_POST['mPrice'];
