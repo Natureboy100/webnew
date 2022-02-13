@@ -66,7 +66,7 @@
 <body>
 
 <h1 id="h1">Add Seller</h1>
-<form class="col-md-3 col-md-offset-3 signUpForm">
+<form class="col-md-3 col-md-offset-3 signUpForm" method="post">
     <div class="form-row ">
         <label for="inputfullname">Enter Your Full Name</label>
         <input type="text" class="form-control" id="inputfullname" name="inputfullname">
@@ -96,14 +96,30 @@
         <input type="password" class="form-control" id="inputpassword" name="inputpassword">
     </div>
     <div class="form-row">
-        <label for="inputnewPassword">New Password</label>
-        <input type="password" class="form-control" id="inputnewPassword" name="inputnewPassword">
+        <label for="address">address</label>
+        <input type="password" class="form-control" id="address" name="address">
     </div>
-    <div class="form-row">
-        <label for="inputpasswordAgain">Retype your Password</label>
-        <input type="password" class="form-control" id="inputpasswordAgain" name="inputpasswordAgain">
-    </div>
+
     <button type="submit" name="submit"  class="btn btn-primary">Submit</button>
 </form>
 </body>
 </html>
+<?php
+include ("../Database/database.php");
+$conn = OpenCon();
+$inputfullname=$_POST['inputfullname'];
+$inputusername=$_POST['inputusername'];
+$inputnewPassword=$_POST['inputPassword'];
+$inputAddress=$_POST['address'];
+$inputAge=$_POST['inputAge'];
+$inputEmail=$_POST['inputEmail'];
+$inputphNO=$_POST['inputphNO'];
+$sql = "INSERT INTO `seller`(`id`, `fullName`, `username`, `password`, `address`, `age`, `email`, `phoneNumber`) VALUES (DEFAULT,'$inputfullname','$inputusername','$inputnewPassword','$inputAddress','$inputAge','$inputEmail','$inputphNO')";
+    $result=$conn->query($sql);
+    if ($conn->query($sql) == TRUE) {
+        echo "New record created successfully";
+    }
+    else {
+        echo "Error: " . $sql . "<br>" . $conn->error;
+    }
+mysqli_close($conn);;
