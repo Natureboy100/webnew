@@ -79,3 +79,31 @@
 
 </body>
 </html>
+<<<<<<< Updated upstream
+=======
+<?php
+    include ("../Database/database.php");
+    $conn = OpenCon();
+
+    if (isset($_POST['submit'])) {
+    $name=$_POST['NameofMedicine'];
+    $type=$_POST['typeOfMedicine'];
+    $description=$_POST['bDescription'];
+    $price=$_POST['mPrice'];
+    $quantity=$_POST['mQuantity'];
+    $usage=$_POST['mUsage'];
+    $company=$_POST['mCompany'];
+    $dose=$_POST['mDose'];
+    # Publish-button was clicked
+    $sql = "INSERT INTO medicine ( inputfullname, mType, mDescription, mPrice, mQuantity, mCompany, mDose)
+    VALUES ('$name','$type','$description',$price,'$quantity','$company',$dose)";
+    $result=$conn->query($sql);
+    if ($conn->query($sql) == TRUE) {
+        echo "New record created successfully";
+    }
+    else {
+        echo "Error: " . $sql . "<br>" . $conn->error;
+    }
+    $conn->close();
+    ?>
+>>>>>>> Stashed changes
