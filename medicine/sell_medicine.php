@@ -82,7 +82,7 @@ if (!isset($_SESSION['username'])) {
 
 
         //Insert into Sales
-        $sql="INSERT INTO sales(id, medicineName, DateSold, qtySold, seller_id, customer) VALUES ('$max_id','$NameofMedicine','02/22',$quantity,$seller_id,20,'$customer');";
+        $sql="INSERT INTO sales(id, medicineName, DateSold, qtySold, seller_id, price,customer) VALUES ('$max_id','$NameofMedicine','02/22',$quantity,$seller_id,20,'$customer');";
         $result=$conn->query($sql);
         if ($conn->query($sql) == TRUE) {
             echo "New record created successfully";
