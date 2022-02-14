@@ -8,9 +8,13 @@
     <title>Document</title>
 
     <style>
-        table, th, td {
+        table,
+        th,
+        td {
+            padding: 10px;
             border: 1px solid black;
             border-collapse: collapse;
+            margin: 0 auto;
         }
     </style>
 </head>

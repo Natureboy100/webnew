@@ -43,8 +43,7 @@
 
 </form>
 
-<<<<<<< Updated upstream
-=======
+
 <?php
     include ("../Database/database.php");
 
@@ -84,7 +83,7 @@
     CloseCon($conn);
 
 ?>
->>>>>>> Stashed changes
+
 
 
 </body>

@@ -8,9 +8,13 @@
     <title>Document</title>
 
     <style>
-        table, th, td {
+        table,
+        th,
+        td {
+            padding: 10px;
             border: 1px solid black;
             border-collapse: collapse;
+            margin: 0 auto;
         }
     </style>
 </head>
@@ -30,24 +34,24 @@ $conn = OpenCon();
             echo "<table>";
             echo "<tr>";
             echo "<th>id</th>";
-            echo "<th>inputfullname</th>";
-            echo "<th>mType</th>";
-            echo "<th>mDescription</th>";
-            echo "<th>mPrice</th>";
-            echo "<th>mQuantity</th>";
-            echo "<th>mCompany</th>";
-            echo "<th>mDose</th>";
+            echo "<th>fullName</th>";
+            echo "<th>username</th>";
+            echo "<th>password</th>";
+            echo "<th>address</th>";
+            echo "<th>age</th>";
+            echo "<th>email</th>";
+            echo "<th>phoneNumber</th>";
             echo "</tr>";
             while($row = mysqli_fetch_array($result)){
                 echo "<tr>";
-                echo "<td>" . $row['med_id'] . "</td>";
-                echo "<td>" . $row['inputfullname'] . "</td>";
-                echo "<td>" . $row['mType'] . "</td>";
-                echo "<td>" . $row['mDescription'] . "</td>";
-                echo "<td>" . $row['mPrice'] . "</td>";
-                echo "<td>" . $row['mQuantity'] . "</td>";
-                echo "<td>" . $row['mCompany'] . "</td>";
-                echo "<td>" . $row['mDose'] . "</td>";
+                echo "<td>" . $row['id'] . "</td>";
+                echo "<td>" . $row['fullName'] . "</td>";
+                echo "<td>" . $row['username'] . "</td>";
+                echo "<td>" . $row['password'] . "</td>";
+                echo "<td>" . $row['address'] . "</td>";
+                echo "<td>" . $row['age'] . "</td>";
+                echo "<td>" . $row['email'] . "</td>";
+                echo "<td>" . $row['phoneNumber'] . "</td>";
                 echo "</tr>";
             }
             echo "</table>";
