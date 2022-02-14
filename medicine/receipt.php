@@ -65,7 +65,7 @@ if (!isset($_SESSION['username'])) {
                 echo "<td>" . $row['DateSold'] . "</td>";
                 echo "<td>" . $row['qtySold'] . "</td>";
                 echo "<td>" . $row['seller_id'] . "</td>";
-                echo "<td>" . $row['price'] . "</td>";
+                echo "<td>" ."$". $row['price'] . "</td>";
                 echo "<td>" . $row['customer'] . "</td>";
                 echo "</tr>";
             }
@@ -91,8 +91,8 @@ if ($result = mysqli_query($conn, $sql)) {
         while ($row = mysqli_fetch_array($result)) {
             echo "<tr>";
             echo "<td>" . $row['SumQty'] . "</td>";
-            echo "<td>" . $row['SumPrice'] . "</td>";
-            echo "<td>" . $row['Total'] . "</td>";
+            echo "<td>" ."$". $row['SumPrice'] . "</td>";
+            echo "<td>" ."$". $row['Total'] . "</td>";
             echo "</tr>";
         }
         echo "</table>";
