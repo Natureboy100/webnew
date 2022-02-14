@@ -114,7 +114,8 @@ if (isset($_POST['bNameofMedicine'])) {
     $inputfullname = $_POST['oldNameofMedicine'];
     $quantity = $_POST['quantity'];
     # Save-button was clicked
-    $sql = "UPDATE medicine SET mQuantity=$quantity WHERE inputfullname='$inputfullname'";$result=$conn->query($sql);
+    $sql = "UPDATE medicine SET mQuantity=$quantity WHERE inputfullname='$inputfullname'";
+    $result=$conn->query($sql);
     runQuery($sql, $conn,$result);
 }
 elseif (isset($_POST['bCompanyName'])) {

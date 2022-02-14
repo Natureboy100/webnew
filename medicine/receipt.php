@@ -1,92 +1,80 @@
-<link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-<script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
-<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .fSearch {
+            margin: 0 auto;
+            margin-top: 50px;
+        }
+        table,
+        th,
+        td {
+            padding: 10px;
+            border: 1px solid black;
+            border-collapse: collapse;
+            margin: 0 auto;
+        }
 
-<!------ Include the above in your HEAD tag ---------->
-<div class="container">
-    <div class="row">
-        <div class="well col-xs-10 col-sm-10 col-md-6 col-xs-offset-1 col-sm-offset-1 col-md-offset-3">
-            <div class="row">
-                <div class="col-xs-6 col-sm-6 col-md-6">
-                    <address>
-                        <strong>The Pharma</strong>
-                        <br>
-                        2135 Sunset Blvd
-                        <br>
-                        Los Angeles, CA 90026
-                        <br>
-                        <abbr title="Phone">P:</abbr> (213) 484-6829
-                    </address>
-                </div>
-                <div class="col-xs-6 col-sm-6 col-md-6 text-right">
-                    <p>
-                        <em>Date: 1st November, 2013</em>
-                    </p>
-                    <p>
-                        <em>Receipt #: 34522677W</em>
-                    </p>
-                </div>
-            </div>
-            <div class="row">
-                <div class="text-center">
-                    <h1>Receipt</h1>
-                </div>
-                </span>
-                <table class="table table-hover">
-                    <thead>
-                    <tr>
-                        <th>Product</th>
-                        <th>#</th>
-                        <th class="text-center">Price</th>
-                        <th class="text-center">Total</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <tr>
-                        <td class="col-md-9"><em>Baked Rodopa Sheep Feta</em></h4></td>
-                        <td class="col-md-1" style="text-align: center"> 2 </td>
-                        <td class="col-md-1 text-center">$13</td>
-                        <td class="col-md-1 text-center">$26</td>
-                    </tr>
-                    <tr>
-                        <td class="col-md-9"><em>Lebanese Cabbage Salad</em></h4></td>
-                        <td class="col-md-1" style="text-align: center"> 1 </td>
-                        <td class="col-md-1 text-center">$8</td>
-                        <td class="col-md-1 text-center">$8</td>
-                    </tr>
-                    <tr>
-                        <td class="col-md-9"><em>Baked Tart with Thyme and Garlic</em></h4></td>
-                        <td class="col-md-1" style="text-align: center"> 3 </td>
-                        <td class="col-md-1 text-center">$16</td>
-                        <td class="col-md-1 text-center">$48</td>
-                    </tr>
-                    <tr>
-<!--                        <td>   </td>-->
-<!--                        <td>   </td>-->
-<!--                        <td class="text-right">-->
-<!--                            <p>-->
-<!--                                <strong>Subtotal: </strong>-->
-<!--                            </p>-->
-<!--                            <p>-->
-<!--                                <strong>Tax: </strong>-->
-<!--                            </p></td>-->
-<!--                        <td class="text-center">-->
-<!--                            <p>-->
-<!--                                <strong>$6.94</strong>-->
-<!--                            </p>-->
-<!--                            <p>-->
-<!--                                <strong>$6.94</strong>-->
-<!--                            </p></td>-->
-<!--                    </tr>-->
-                    <tr>
-                        <td>   </td>
-                        <td>   </td>
-                        <td class="text-right"><h4><strong>Total: </strong></h4></td>
-                        <td class="text-center text-danger"><h4><strong>$31.53</strong></h4></td>
-                    </tr>
-                    </tbody>
-                </table>
+    </style>
+</head>
+<body>
+<?php
+include ("../Database/database.php");
+$conn = OpenCon();
 
-            </div>
-        </div>
-    </div>
+
+if (isset($_POST["bSearch"])) {
+    $search = $_POST["search"];
+
+
+    $sql = "SELECT * FROM medicine WHERE inputfullname='$search' ";
+    if ($result = mysqli_query($conn, $sql)) {
+        if (mysqli_num_rows($result) > 0) {
+            echo "<table>";
+            echo "<tr>";
+            echo "<th>id</th>";
+            echo "<th>medicineName</th>";
+            echo "<th>DateSold</th>";
+            echo "<th>qtySold</th>";
+            echo "<th>seller_id</th>";
+            echo "<th>mQuantity</th>";
+            echo "<th>customer</th>";
+            echo "<th>Price</th>";
+            echo "</tr>";
+            while ($row = mysqli_fetch_array($result)) {
+                echo "<tr>";
+                echo "<td>" . $row['med_id'] . "</td>";
+                echo "<td>" . $row['inputfullname'] . "</td>";
+                echo "<td>" . $row['mType'] . "</td>";
+                echo "<td>" . $row['mDescription'] . "</td>";
+                echo "<td>" . $row['mQty'] . "</td>";
+                echo "<td>" . $row['mQuantity'] . "</td>";
+                echo "<td>" . $row['mCompany'] . "</td>";
+                echo "<td>" . $row['mPrice'] . "</td>";
+                echo "</tr>";
+            }
+            echo "</table>";
+            // Close result set
+            mysqli_free_result($result);
+        } else {
+            echo "No records matching your query were found.";
+        }
+    } else {
+        echo "ERROR: Could not able to execute $sql. " . mysqli_error($conn);
+    }
+}
+
+
+CloseCon($conn);
+
+
+?>
+</body>
+</html>
+
+
