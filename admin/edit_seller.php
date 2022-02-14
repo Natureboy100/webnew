@@ -68,71 +68,71 @@ include ("../Database/database.php");
 $conn = OpenCon();
 
 
-if (isset($_POST['verifyName'])) {
-    $name=$_POST['Name'];
-    $sql = "SELECT * FROM seller where fullname = '$name'";
-    $result=$conn->query($sql);
-    if ($result->num_rows > 0) {
-        // output data of each row
-        while ($row = $result->fetch_assoc()) {
-            echo "<h3>Seller's Account Exists</h3>";
+    if (isset($_POST['verifyName'])) {
+        $name=$_POST['Name'];
+        $sql = "SELECT * FROM seller where fullname = '$name'";
+        $result=$conn->query($sql);
+        if ($result->num_rows > 0) {
+            // output data of each row
+            while ($row = $result->fetch_assoc()) {
+                echo "<h3>Seller's Account Exists</h3>";
+            }
+        } else {
+            echo "<h3>Your account does not Exist</h3>";
         }
-    } else {
-        echo "<h3>Your account does not Exist</h3>";
-    }
 
-}
-elseif (isset($_POST['updateUsername'])) {
-    $name=$_POST['Name'];
-    $username=$_POST['username'];
-    $sql = "UPDATE seller SET username= '$username' WHERE fullName='$name'";
-    $result = $conn->query($sql);
-    runQuery($sql, $conn,$result);
-}
-elseif (isset($_POST['updatePasword'])) {
-    $name=$_POST['Name'];
-    $Password=$_POST['Password'];
-    $sql="UPDATE seller SET password= '$Password' WHERE fullName='$name'";
-    $result=$conn->query($sql);
-    runQuery($sql, $conn,$result);
-}
-elseif (isset($_POST['updateName'])) {
-    $name=$_POST['Name'];
-    $name2=$_POST['name2'];
-    $sql="UPDATE seller SET fullName='$name2' WHERE fullName='$name'";
-    $result=$conn->query($sql);
-    runQuery($sql, $conn,$result);
-}
-elseif (isset($_POST['updateAge'])) {
-    $name=$_POST['Name'];
-    $age=$_POST['age'];
-    $sql="UPDATE seller SET age=$age WHERE fullName='$name'";
-    $result=$conn->query($sql);
-    runQuery($sql, $conn,$result);
-}
-elseif (isset($_POST['updateAddress'])) {
-    $name=$_POST['Name'];
-    $address=$_POST['address'];
-    $sql="UPDATE seller SET address='$address' WHERE fullName='$name'";
-    $result=$conn->query($sql);
-    runQuery($sql, $conn,$result);
-}
-elseif (isset($_POST['updatePhNo'])) {
-    $name=$_POST['Name'];
-    $phNo=$_POST['phNo'];
-    $sql="UPDATE seller SET phoneNumber='$phNo' WHERE fullName='$name'";
-    $result=$conn->query($sql);
-    runQuery($sql, $conn,$result);
-}
-function runQuery($sql,$conn,$result)
-{
-    $result = $conn->query($sql);
-    if ($conn->query($sql) == TRUE) {
-        echo "<br> Posted";
-    } else {
-        echo "Error: " . $sql . "<br>" . $conn->error;
     }
-}
+    elseif (isset($_POST['updateUsername'])) {
+        $name=$_POST['Name'];
+        $username=$_POST['username'];
+        $sql = "UPDATE seller SET username= '$username' WHERE fullName='$name'";
+        $result = $conn->query($sql);
+        runQuery($sql, $conn,$result);
+    }
+    elseif (isset($_POST['updatePasword'])) {
+        $name=$_POST['Name'];
+        $Password=$_POST['Password'];
+        $sql="UPDATE seller SET password= '$Password' WHERE fullName='$name'";
+        $result=$conn->query($sql);
+        runQuery($sql, $conn,$result);
+    }
+    elseif (isset($_POST['updateName'])) {
+        $name=$_POST['Name'];
+        $name2=$_POST['name2'];
+        $sql="UPDATE seller SET fullName='$name2' WHERE fullName='$name'";
+        $result=$conn->query($sql);
+        runQuery($sql, $conn,$result);
+    }
+    elseif (isset($_POST['updateAge'])) {
+        $name=$_POST['Name'];
+        $age=$_POST['age'];
+        $sql="UPDATE seller SET age=$age WHERE fullName='$name'";
+        $result=$conn->query($sql);
+        runQuery($sql, $conn,$result);
+    }
+    elseif (isset($_POST['updateAddress'])) {
+        $name=$_POST['Name'];
+        $address=$_POST['address'];
+        $sql="UPDATE seller SET address='$address' WHERE fullName='$name'";
+        $result=$conn->query($sql);
+        runQuery($sql, $conn,$result);
+    }
+    elseif (isset($_POST['updatePhNo'])) {
+        $name=$_POST['Name'];
+        $phNo=$_POST['phNo'];
+        $sql="UPDATE seller SET phoneNumber='$phNo' WHERE fullName='$name'";
+        $result=$conn->query($sql);
+        runQuery($sql, $conn,$result);
+    }
+    function runQuery($sql,$conn,$result)
+    {
+        $result = $conn->query($sql);
+        if ($conn->query($sql) == TRUE) {
+            echo "<br> Posted";
+        } else {
+            echo "Error: " . $sql . "<br>" . $conn->error;
+        }
+    }
 $conn->close();
 ?>
 

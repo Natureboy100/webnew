@@ -1,4 +1,4 @@
-CREATE TABLE sales(id INT,medicineName VARCHAR(255),DateSold VARCHAR(255),qtySold INT,seller_id INT,price INT, customer VARCHAR(500));
+CREATE TABLE if not exists sales(id INT,medicineName VARCHAR(255),DateSold VARCHAR(255),qtySold INT,seller_id INT,price INT, customer VARCHAR(500));
 
 INSERT INTO sales VALUES(1,'Visine','3/26/2839',3,3,3,'Nathan');
 INSERT INTO sales VALUES(1,'Nurofen','5/12/2090',18,6,6,'Matthew');
