@@ -113,21 +113,28 @@ if (!isset($_SESSION['username'])) {
 </body>
 </html>
 <?php
-include ("../Database/database.php");
-$conn = OpenCon();
-$inputfullname=$_POST['inputfullname'];
-$inputusername=$_POST['inputusername'];
-$inputnewPassword=$_POST['inputPassword'];
-$inputAddress=$_POST['address'];
-$inputAge=$_POST['inputAge'];
-$inputEmail=$_POST['inputEmail'];
-$inputphNO=$_POST['inputphNO'];
-$sql = "INSERT INTO `seller`(`id`, `fullName`, `username`, `password`, `address`, `age`, `email`, `phoneNumber`) VALUES (DEFAULT,'$inputfullname','$inputusername','$inputnewPassword','$inputAddress','$inputAge','$inputEmail','$inputphNO')";
-    $result=$conn->query($sql);
-    if ($conn->query($sql) == TRUE) {
-        echo "New record created successfully";
+    include ("../Database/database.php");
+    $conn = OpenCon();
+
+    if (isset($_POST['submit'])) {
+        $inputfullname=$_POST['inputfullname'];
+        $inputusername=$_POST['inputusername'];
+        $inputnewPassword=$_POST['inputPassword'];
+        $inputAddress=$_POST['address'];
+        $inputAge=$_POST['inputAge'];
+        $inputEmail=$_POST['inputEmail'];
+        $inputphNO=$_POST['inputphNO'];
+        $sql = "INSERT INTO seller('id', 'fullName', 'username', 'password', 'address', 'age', 'email', 'phoneNumber') VALUES (DEFAULT,'$inputfullname','$inputusername','$inputnewPassword','$inputAddress','$inputAge','$inputEmail','$inputphNO')";
+        $result=$conn->query($sql);
+        if ($conn->query($sql) == TRUE) {
+            echo "New record created successfully";
+        }
+        else {
+            echo "Error: " . $sql . "<br>" . $conn->error;
+        }
+        mysqli_close($conn);;
     }
-    else {
-        echo "Error: " . $sql . "<br>" . $conn->error;
-    }
-mysqli_close($conn);;
+
+
+
+?>

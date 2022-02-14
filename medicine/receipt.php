@@ -37,7 +37,6 @@ if (!isset($_SESSION['username'])) {
 
 <?php
     include ("../Database/database.php");
-    include ("medicine/receipt.php");
     $conn = OpenCon();
 
 

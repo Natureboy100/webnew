@@ -49,9 +49,9 @@ if (!isset($_SESSION['username'])) {
                         Seller
                     </a>
                     <ul class="dropdown-menu Menu " aria-labelledby="navbarDropdown">
-                        <li><a class="dropdown-item Menu" href="#">Add seller</a></li>
-                        <li><a class="dropdown-item Menu" href="#">Edit Existing Sellers</a></li>
-                        <li><a class="dropdown-item Menu" href="#">View Existing Sellers</a></li>
+                        <li><a class="dropdown-item Menu" href="add_seller.php">Add seller</a></li>
+                        <li><a class="dropdown-item Menu" href="edit_seller.php">Edit Existing Sellers</a></li>
+                        <li><a class="dropdown-item Menu" href="view_seller.php">View Existing Sellers</a></li>
 
                     </ul>
                 </li>
@@ -61,11 +61,11 @@ if (!isset($_SESSION['username'])) {
                         Medicine
                     </a>
                     <ul class="dropdown-menu Menu " aria-labelledby="navbarDropdown">
-                        <li><a class="dropdown-item Menu" href="#">Add Medicine</a></li>
-                        <li><a class="dropdown-item Menu" href="#">Delete Medicine</a></li>
-                        <li><a class="dropdown-item Menu" href="#">Update Medicine List</a></li>
-                        <li><a class="dropdown-item Menu" href="#">View Medicines</a></li>
-                        <li><a class="dropdown-item Menu" href="#">Receipts</a></li>
+                        <li><a class="dropdown-item Menu" href="../medicine/add_medicine.php">Add Medicine</a></li>
+                        <li><a class="dropdown-item Menu" href="../medicine/delete_medicine.php">Delete Medicine</a></li>
+                        <li><a class="dropdown-item Menu" href="../medicine/edit_medicine.php">Update Medicine List</a></li>
+                        <li><a class="dropdown-item Menu" href="../medicine/view_medicine.php">View Medicines</a></li>
+                        <li><a class="dropdown-item Menu" href="../medicine/receipt.php">Receipts</a></li>
 
                     </ul>
                 </li>
