@@ -24,17 +24,18 @@
 </head>
 <body>
 <?php
-include ("../Database/database.php");
-$conn = OpenCon();
+    include ("../Database/database.php");
+    $conn = OpenCon();
 
 
-if (isset($_POST["bSearch"])) {
-    $search = $_POST["search"];
 
 
-    $sql = "SELECT * FROM medicine WHERE inputfullname='$search' ";
+
+
+    $sql = "SELECT * FROM receipt WHERE  ";
     if ($result = mysqli_query($conn, $sql)) {
         if (mysqli_num_rows($result) > 0) {
+            echo "<h1>Receipt</h1>"
             echo "<table>";
             echo "<tr>";
             echo "<th>id</th>";
@@ -42,20 +43,19 @@ if (isset($_POST["bSearch"])) {
             echo "<th>DateSold</th>";
             echo "<th>qtySold</th>";
             echo "<th>seller_id</th>";
-            echo "<th>mQuantity</th>";
-            echo "<th>customer</th>";
             echo "<th>Price</th>";
+            echo "<th>customer</th>";
             echo "</tr>";
+
             while ($row = mysqli_fetch_array($result)) {
                 echo "<tr>";
-                echo "<td>" . $row['med_id'] . "</td>";
-                echo "<td>" . $row['inputfullname'] . "</td>";
-                echo "<td>" . $row['mType'] . "</td>";
-                echo "<td>" . $row['mDescription'] . "</td>";
-                echo "<td>" . $row['mQty'] . "</td>";
-                echo "<td>" . $row['mQuantity'] . "</td>";
-                echo "<td>" . $row['mCompany'] . "</td>";
-                echo "<td>" . $row['mPrice'] . "</td>";
+                echo "<td>" . $row['id'] . "</td>";
+                echo "<td>" . $row['medicineName'] . "</td>";
+                echo "<td>" . $row['DateSold'] . "</td>";
+                echo "<td>" . $row['qtySold'] . "</td>";
+                echo "<td>" . $row['seller_id'] . "</td>";
+                echo "<td>" . $row['price'] . "</td>";
+                echo "<td>" . $row['customer'] . "</td>";
                 echo "</tr>";
             }
             echo "</table>";
@@ -67,7 +67,7 @@ if (isset($_POST["bSearch"])) {
     } else {
         echo "ERROR: Could not able to execute $sql. " . mysqli_error($conn);
     }
-}
+
 
 
 CloseCon($conn);

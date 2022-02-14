@@ -57,16 +57,15 @@
 //        Then, echo medicine added to cart with same receipt id.
 //        If checkout clicked, it will made a whole receipt.
 
-        $sql = "SELECT * FROM medicine WHERE inputfullname='$NameofMedicine' ";
+        $sql = "UPDATE medicine if(mQty-'$quantity'>0) SET mQty=mQty-'$quantity' WHERE inputfullname='$NameofMedicine'";
 
         if($result = mysqli_query($conn, $sql)){
             if(mysqli_num_rows($result) > 0){
 
                 while($row = mysqli_fetch_array($result)){
 
-                    echo "<td>" . $row['inputfullname'] . "</td>";
+                    echo "<td>" . $row['inputfullname'] . "record updated" . "</td>";
 
-                    echo "<td>" . $row['mDose'] . "</td>";
                     echo "</tr>";
                 }
                 echo "</table>";
@@ -78,6 +77,7 @@
         } else{
             echo "ERROR: Could not able to execute $sql. " . mysqli_error($conn);
         }
+
     }
 
     CloseCon($conn);
