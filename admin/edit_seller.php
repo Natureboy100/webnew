@@ -36,27 +36,14 @@
     <input type="text" name="username" id="username">
     <input type="submit" name="updateUsername" value="Submit Username">
 
-    <h3>Update Password</h3>
-
     <label for="Password">Enter Current Password: </label>
     <input type="password" name="Password" id="Password">
-
-    <label for="newPassword">Enter New Password: </label>
-    <input type="password" name="newPassword" id="newPassword">
-
-    <label for="againPassword">Enter New Password Again: </label>
-    <input type="password" name="againPassword" id="againPassword">
-
     <input type="submit" name="updatePasword" value="Submit Password">
-
-    <h3>Current Full Name: <?php echo "Muhammad Hazrat" ?></h3>
 
 
     <label for="name">Update Full Name: </label>
     <input type="text" name="name" id="name">
     <input type="submit" name="updateName" value="Submit Full Name">
-
-    <h3>Current Age: <?php echo "19" ?></h3>
 
 
     <label for="age">Update Age: </label>
@@ -77,8 +64,52 @@
 </body>
 </html>
 <?php
+include ("../Database/database.php");
+$conn = OpenCon();
 
-
->
+if (isset($_POST['verifyEmail'])) {
+    # Publish-button was clicked
+    $sql="";
+    $result=$conn->query($sql);
+    runQuery($sql, $conn,$result);
+}
+elseif (isset($_POST['updateUsername'])) {
+    # Save-button was clicked
+    $sql="";
+    $result=$conn->query($sql);
+    runQuery($sql, $conn,$result);
+}
+elseif (isset($_POST['updatePasword'])) {
+    # Save-button was clicked
+    $sql="";
+    $result=$conn->query($sql);
+    runQuery($sql, $conn,$result);
+}
+elseif (isset($_POST['updateName'])) {
+    # Save-button was clicked
+    $sql="";
+    $result=$conn->query($sql);
+    runQuery($sql, $conn,$result);
+}
+elseif (isset($_POST['updateAge'])) {
+    # Save-button was clicked
+    $sql="";
+    $result=$conn->query($sql);
+    runQuery($sql, $conn,$result);
+}
+elseif (isset($_POST['updateAddress'])) {
+    # Save-button was clicked
+    $sql="";
+    $result=$conn->query($sql);
+    runQuery($sql, $conn,$result);
+}
+elseif (isset($_POST['updatePhNo'])) {
+    # Save-button was clicked
+    $sql="";
+    $result=$conn->query($sql);
+    runQuery($sql, $conn,$result);
+}
+$conn->close();
+?>
 
 
