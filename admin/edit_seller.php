@@ -28,9 +28,9 @@
 <h1>Edit Seller Information</h1>
 
 <form class="col-md-4 col-md-offset-4 signUpForm" id="admin_profile_form">
-    <label for="selectEmail">Enter The Email Of The Seller You Want To Edit: </label>
-    <input type="text" name="selectEmail" id="selectEmail">
-    <input type="submit" name="verifyEmail" value="Verify Email Exists">
+    <label for="selectName">Enter The Name Of The Seller You Want To Edit: </label>
+    <input type="text" name="Name" id="Name">
+    <input type="submit" name="verifyName" value="Verify Name Exists">
 
     <label for="username">Update Username: </label>
     <input type="text" name="username" id="username">
@@ -48,7 +48,7 @@
 
     <label for="age">Update Age: </label>
     <input type="text" name="age" id="age">
-    <input type="submit" name="updateAge" value="Submit Age">
+    <input type="submit" name="updateAgge" value="Submit Age">
 
     <label for="address">Update Address: </label>
     <input type="text" name="address" id="address">
@@ -67,45 +67,51 @@
 include ("../Database/database.php");
 $conn = OpenCon();
 
-if (isset($_POST['verifyEmail'])) {
-    # Publish-button was clicked
+if (isset($_POST['verifyName'])) {
+    $name=$_POST['Name'];
     $sql="";
     $result=$conn->query($sql);
     runQuery($sql, $conn,$result);
 }
 elseif (isset($_POST['updateUsername'])) {
-    # Save-button was clicked
-    $sql="";
+    $name=$_POST['Name'];
+    $username=$_POST['username']
+    $sql="UPDATE seller SET username= '$username' WHERE fullName='$name'";
     $result=$conn->query($sql);
     runQuery($sql, $conn,$result);
 }
 elseif (isset($_POST['updatePasword'])) {
-    # Save-button was clicked
-    $sql="";
+    $name=$_POST['Name'];
+    $Password=$_POST['Password'];
+    $sql="UPDATE seller SET password= '$Password' WHERE fullName='$name'";
     $result=$conn->query($sql);
     runQuery($sql, $conn,$result);
 }
 elseif (isset($_POST['updateName'])) {
-    # Save-button was clicked
-    $sql="";
+    $name=$_POST['Name'];
+    $name=$_POST['name'];
+    $sql="UPDATE seller SET fullName= '$name' WHERE fullName='$name'";
     $result=$conn->query($sql);
     runQuery($sql, $conn,$result);
 }
 elseif (isset($_POST['updateAge'])) {
-    # Save-button was clicked
-    $sql="";
+    $name=$_POST['Name'];
+    $age=$_POST['age'];
+    $sql="UPDATE seller SET age= '$age' WHERE fullName='$name'";
     $result=$conn->query($sql);
     runQuery($sql, $conn,$result);
 }
 elseif (isset($_POST['updateAddress'])) {
-    # Save-button was clicked
-    $sql="";
+    $name=$_POST['Name'];
+    $address=$_POST['address'];
+    $sql="UPDATE seller SET address= '$address' WHERE fullName='$name'";
     $result=$conn->query($sql);
     runQuery($sql, $conn,$result);
 }
 elseif (isset($_POST['updatePhNo'])) {
-    # Save-button was clicked
-    $sql="";
+    $name=$_POST['Name'];
+    $phNo=$_POST['phNo'];
+    $sql="UPDATE seller SET phoneNumber= '$phNo' WHERE fullName='$name'";
     $result=$conn->query($sql);
     runQuery($sql, $conn,$result);
 }
