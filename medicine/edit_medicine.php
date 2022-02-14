@@ -78,50 +78,13 @@
 <?php
 include ("../Database/database.php");
 $conn = OpenCon();
+
 # Publish-button was clicked
 if (isset($_POST['bNameofMedicine'])) {
-    $name = $_POST['oldNameofMedicine'];
-    $inputfullname = $_POST['newNameofMedicine'];
+    $inputfullname = $_POST['oldNameofMedicine'];
+    $name = $_POST['newNameofMedicine'];
     # Publish-button was clicked
     $sql = "UPDATE medicine SET inputfullname='$name' WHERE inputfullname='$inputfullname'";
-    runQuery($sql, $conn);
-} elseif (isset($_POST['btypeOfMedicine'])) {
-    # Save-button was clicked
-    $type = $_POST['typeOfMedicine'];
-    $sql = "UPDATE medicine SET mType='$type' WHERE inputfullname='$inputfullname'";
-    runQuery($sql, $conn);
-} elseif (isset($_POST['bDescription'])) {
-    $description = $_POST['bDescription'];
-    # Save-button was clicked
-    $sql = "UPDATE medicine SET mDescription='$description' WHERE inputfullname='$inputfullname'";
-    runQuery($sql, $conn);
-} elseif (isset($_POST['bMedicinePrice'])) {
-    # Save-button was clicked
-    $sql = "UPDATE medicine SET mPrice='$price' WHERE inputfullname='$inputfullname'";
-    runQuery($sql, $conn);
-} elseif (isset($_POST['updateQuantity'])) {
-    $quantity = $_POST['mQuantity'];
-    # Save-button was clicked
-    $sql = "UPDATE medicine SET mQuantity=$quantity WHERE inputfullname='$inputfullname'";
-    runQuery($sql, $conn);
-} elseif (isset($_POST['bCompanyName'])) {
-    $company = $_POST['mCompany'];
-    # Save-button was clicked
-    $sql = "UPDATE medicine SET mCompany='$company' WHERE inputfullname='$inputfullname'";
-    runQuery($sql, $conn);
-} elseif (isset($_POST['bUsage'])) {
-    $usage = $_POST['mUsage'];
-    # Save-button was clicked
-    $sql = "UPDATE medicine SET mDose='$dose' WHERE inputfullname='$inputfullname'";
-    runQuery($sql, $conn);
-} elseif (isset($_POST['bDoseDescription'])) {
-    $dose = $_POST['mDose'];
-    # Save-button was clicked
-    $sql = "UPDATE medicine SET mDose='$dose' WHERE inputfullname='$inputfullname'";
-    runQuery($sql, $conn);
-}
-
-function runQuery($sql,$conn) {
     $result=$conn->query($sql);
     if ($conn->query($sql) == TRUE) {
         echo "New record created successfully";
@@ -129,6 +92,62 @@ function runQuery($sql,$conn) {
     else {
         echo "Error: " . $sql . "<br>" . $conn->error;
     }
+} elseif (isset($_POST['btypeOfMedicine'])) {
+    # Save-button was clicked
+    $inputfullname = $_POST['oldNameofMedicine'];
+    $type = $_POST['typeOfMedicine'];
+    $sql = "UPDATE medicine SET mType='$type' WHERE inputfullname='$inputfullname'";$result=$conn->query($sql);
+    runQuery($sql, $conn,$result);
+} elseif (isset($_POST['bDescription'])) {
+    $inputfullname = $_POST['oldNameofMedicine'];
+    $description = $_POST['Description'];
+    # Save-button was clicked
+    $sql = "UPDATE medicine SET mDescription='$description' WHERE inputfullname='$inputfullname'";$result=$conn->query($sql);
+    runQuery($sql, $conn,$result);
+} elseif (isset($_POST['bMedicinePrice'])) {
+    $inputfullname = $_POST['MedicinePrice'];
+    $price = $_POST['oldNameofMedicine'];
+    # Save-button was clicked
+    $sql = "UPDATE medicine SET mPrice='$price' WHERE inputfullname='$inputfullname'";$result=$conn->query($sql);
+    runQuery($sql, $conn,$result);
+} elseif (isset($_POST['updateQuantity'])){
+    $inputfullname = $_POST['oldNameofMedicine'];
+    $quantity = $_POST['mQuantity'];
+    # Save-button was clicked
+    $sql = "UPDATE medicine SET mQuantity=$quantity WHERE inputfullname='$inputfullname'";$result=$conn->query($sql);
+    runQuery($sql, $conn,$result);
+}
+elseif (isset($_POST['bCompanyName'])) {
+$inputfullname = $_POST['oldNameofMedicine'];
+    $company = $_POST['mCompany'];
+    # Save-button was clicked
+    $sql = "UPDATE medicine SET mCompany='$company' WHERE inputfullname='$inputfullname'";$result=$conn->query($sql);
+    runQuery($sql, $conn,$result);
+}
+elseif (isset($_POST['bUsage'])) {
+    $inputfullname = $_POST['oldNameofMedicine'];
+    $usage = $_POST['mUsage'];
+    # Save-button was clicked
+    $sql = "UPDATE medicine SET mDose='$usage' WHERE inputfullname='$inputfullname'";$result=$conn->query($sql);
+    runQuery($sql, $conn,$result);
+}
+elseif (isset($_POST['bDoseDescription'])) {
+     $inputfullname = $_POST['oldNameofMedicine'];
+    $dose = $_POST['mDose'];
+    # Save-button was clicked
+    $sql = "UPDATE medicine SET mDose='$dose' WHERE inputfullname='$inputfullname'";$result=$conn->query($sql);
+    runQuery($sql, $conn,$result);
+}
+
+function runQuery($sql,$conn,$result) {
+    $result=$conn->query($sql);
+    if ($conn->query($sql) == TRUE) {
+        echo "New record created successfully";
+    }
+    else {
+        echo "Error: " . $sql . "<br>" . $conn->error;
+    }
+
 }
 
 $conn->close();?>
