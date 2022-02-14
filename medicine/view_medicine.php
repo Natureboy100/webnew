@@ -1,4 +1,6 @@
 <?php
+session_start();
+
 if (!isset($_SESSION['username'])) {
     header("Location:../logout.php");
 }
@@ -25,7 +27,7 @@ if (!isset($_SESSION['username'])) {
     </style>
 </head>
 <body>
-<h3 style="text-align: right"><a href="seller_logout.php">Logout</a></h3>
+<h3 style="text-align: right"><a href="../logout.php">Logout</a></h3>
 
 <div class="container-lg">
     <div class="table-responsive">
@@ -105,7 +107,7 @@ if (!isset($_SESSION['username'])) {
                 echo "<td>" . $row['mType'] . "</td>";
                 echo "<td>" . $row['mDescription'] . "</td>";
                 echo "<td>" . $row['mQty'] . "</td>";
-                echo "<td>" . $row['mQuantity'] . "</td>";
+                echo "<td>" . $row['mDose'] . "</td>";
                 echo "<td>" . $row['mCompany'] . "</td>";
                 echo "<td>" . $row['mPrice'] . "</td>";
                 echo "</tr>";

@@ -1,4 +1,6 @@
 <?php
+session_start();
+
 if (!isset($_SESSION['username'])) {
     header("Location:../logout.php");
 }
@@ -70,7 +72,7 @@ if (!isset($_SESSION['username'])) {
 
 
 <body>
-<h3 style="text-align: right"><a href="seller_logout.php">Logout</a></h3>
+<h3 style="text-align: right"><a href="../logout.php">Logout</a></h3>
 <h1 id="h1">Add Seller</h1>
 <form class="col-md-3 col-md-offset-3 signUpForm" method="post">
     <div class="form-row ">

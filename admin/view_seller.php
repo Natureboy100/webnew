@@ -1,4 +1,6 @@
 <?php
+session_start();
+
 if (!isset($_SESSION['username'])) {
     header("Location:../logout.php");
 }
@@ -25,7 +27,7 @@ if (!isset($_SESSION['username'])) {
     </style>
 </head>
 <body>
-<h3 style="text-align: right"><a href="seller_logout.php">Logout</a></h3>
+<h3 style="text-align: right"><a href="../logout.php">Logout</a></h3>
 
 
 <?php
@@ -69,7 +71,6 @@ $conn = OpenCon();
     } else{
         echo "ERROR: Could not able to execute $sql. " . mysqli_error($conn);
 }
-
 CloseCon($conn);
 ?>
 

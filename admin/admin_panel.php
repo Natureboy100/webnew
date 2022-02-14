@@ -1,4 +1,6 @@
 <?php
+session_start();
+
 if (!isset($_SESSION['username'])) {
     header("Location:../logout.php");
 }
@@ -18,7 +20,7 @@ if (!isset($_SESSION['username'])) {
 </head>
 
 <body>
-<h3 style="text-align: right"><a href="seller_logout.php">Logout</a></h3>
+<h3 style="text-align: right"><a href="../logout.php">Logout</a></h3>
 <!-- Optional JavaScript; choose one of the two! -->
 
 <!-- Option 1: Bootstrap Bundle with Popper -->

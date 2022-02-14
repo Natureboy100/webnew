@@ -1,4 +1,6 @@
 <?php
+session_start();
+
 if (!isset($_SESSION['username'])) {
     header("Location:../logout.php");
 }
@@ -33,7 +35,7 @@ if (!isset($_SESSION['username'])) {
 
 </head>
 <body>
-    <h3 style="text-align: right"><a href="seller_logout.php">Logout</a></h3>
+<h3 style="text-align: right"><a href="../logout.php">Logout</a></h3>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
     <form class="d-flex col-4 fSearch" method="post">
@@ -72,7 +74,7 @@ if (!isset($_SESSION['username'])) {
                     echo "<td>" . $row['mType'] . "</td>";
                     echo "<td>" . $row['mDescription'] . "</td>";
                     echo "<td>" . $row['mQty'] . "</td>";
-                    echo "<td>" . $row['mQuantity'] . "</td>";
+                    echo "<td>" . $row['mDose'] . "</td>";
                     echo "<td>" . $row['mCompany'] . "</td>";
                     echo "<td>" . $row['mPrice'] . "</td>";
                     echo "</tr>";
