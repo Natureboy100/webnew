@@ -43,6 +43,48 @@
 
 </form>
 
+<<<<<<< Updated upstream
+=======
+<?php
+    include ("../Database/database.php");
+
+    $conn = OpenCon();
+
+    if (isset($_POST["bAddToCart"])) {
+        $NameofMedicine = $_POST["NameofMedicine"];
+        $quantity = $_POST["quantity"];
+
+//        Trying to verify if medicine exists and then minus the qty from it
+//        Then, echo medicine added to cart with same receipt id.
+//        If checkout clicked, it will made a whole receipt.
+
+        $sql = "SELECT * FROM medicine WHERE inputfullname='$NameofMedicine' ";
+
+        if($result = mysqli_query($conn, $sql)){
+            if(mysqli_num_rows($result) > 0){
+
+                while($row = mysqli_fetch_array($result)){
+
+                    echo "<td>" . $row['inputfullname'] . "</td>";
+
+                    echo "<td>" . $row['mDose'] . "</td>";
+                    echo "</tr>";
+                }
+                echo "</table>";
+                // Close result set
+                mysqli_free_result($result);
+            } else{
+                echo "No records matching your query were found.";
+            }
+        } else{
+            echo "ERROR: Could not able to execute $sql. " . mysqli_error($conn);
+        }
+    }
+
+    CloseCon($conn);
+
+?>
+>>>>>>> Stashed changes
 
 
 </body>

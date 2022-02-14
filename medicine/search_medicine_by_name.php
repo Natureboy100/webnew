@@ -63,10 +63,10 @@ if (isset($_POST["bSearch"])) {
                 echo "<td>" . $row['inputfullname'] . "</td>";
                 echo "<td>" . $row['mType'] . "</td>";
                 echo "<td>" . $row['mDescription'] . "</td>";
-                echo "<td>" . $row['mPrice'] . "</td>";
+                echo "<td>" . $row['mQty'] . "</td>";
                 echo "<td>" . $row['mQuantity'] . "</td>";
                 echo "<td>" . $row['mCompany'] . "</td>";
-                echo "<td>" . $row['mDose'] . "</td>";
+                echo "<td>" . $row['mPrice'] . "</td>";
                 echo "</tr>";
             }
             echo "</table>";

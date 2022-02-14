@@ -127,7 +127,7 @@ $name=$_POST['inputfullname'];
     $company=$_POST['mCompany'];
     $dose=$_POST['mDose'];
     # Publish-button was clicked
-    $sql = "INSERT INTO medicine ( inputfullname, mType, mDescription, mPrice, mQuantity, mCompany, mDose)
+    $sql = "INSERT INTO medicine ( inputfullname, mType, mDescription, mQty, mQuantity, mCompany, mPrice)
 VALUES ('$name','$type','$description',$price,'$quantity','$company',$dose)";
     $result=$conn->query($sql);
     if ($conn->query($sql) == TRUE) {
