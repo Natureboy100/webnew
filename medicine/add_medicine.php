@@ -1,3 +1,9 @@
+<?php
+    if (!isset($_SESSION['username'])) {
+        header("Location:../logout.php");
+    }
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -64,7 +70,7 @@
 
 
 <body>
-
+<h3 style="text-align: right"><a href="seller_logout.php">Logout</a></h3>
 <h1 id="h1">Add Medicine</h1>
 name, type, description, price, quantity (i.e total no of availability), usage, Company name, dose etc.
 <form class="col-md-3 col-md-offset-3 signUpForm" method="post">

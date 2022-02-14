@@ -1,3 +1,9 @@
+<?php
+if (!isset($_SESSION['username'])) {
+    header("Location:../logout.php");
+}
+?>
+
 <!doctype html>
 <html lang="en">
 
@@ -12,6 +18,7 @@
 </head>
 
 <body>
+<h3 style="text-align: right"><a href="seller_logout.php">Logout</a></h3>
 <!-- Optional JavaScript; choose one of the two! -->
 
 <!-- Option 1: Bootstrap Bundle with Popper -->

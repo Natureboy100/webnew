@@ -1,3 +1,9 @@
+<?php
+    if (!isset($_SESSION['username'])) {
+        header("Location:../logout.php");
+    }
+?>
+
 <!doctype html>
 <html lang="en">
 
@@ -17,7 +23,7 @@
 <!-- Option 1: Bootstrap Bundle with Popper -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 
-
+<h3 style="text-align: right"><a href="seller_logout.php">Logout</a></h3>
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
 
     <div class="container-fluid">

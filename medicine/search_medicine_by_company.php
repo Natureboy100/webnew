@@ -1,3 +1,9 @@
+<?php
+if (!isset($_SESSION['username'])) {
+    header("Location:../logout.php");
+}
+?>
+
 <!doctype html>
 <html lang="en">
 <head>
@@ -27,6 +33,8 @@
 
 </head>
 <body>
+    <h3 style="text-align: right"><a href="seller_logout.php">Logout</a></h3>
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
     <form class="d-flex col-4 fSearch" method="post">
         <input class="form-control me-2" name="search" type="search" placeholder="Search Medicine By Company Name" aria-label="Search">

@@ -1,3 +1,9 @@
+<?php
+if (!isset($_SESSION['username'])) {
+    header("Location:../logout.php");
+}
+?>
+
 <!doctype html>
 <html lang="en">
 <head>
@@ -19,6 +25,8 @@
     </style>
 </head>
 <body>
+<h3 style="text-align: right"><a href="seller_logout.php">Logout</a></h3>
+
 <div class="container-lg">
     <div class="table-responsive">
         <div class="table-wrapper">

@@ -1,4 +1,9 @@
 <?php
+
+if (!isset($_SESSION['username'])) {
+    header("Location:../logout.php");
+}
+
 ?>
 <!doctype html>
 <html lang="en">
@@ -27,6 +32,8 @@
     </style>
 </head>
 <body>
+<h3 style="text-align: right"><a href="seller_logout.php">Logout</a></h3>
+
 <h1>Update Medicine Information</h1>
 
 <form class="col-md-4 col-md-offset-4 signUpForm" id="admin_profile_form" method="post">

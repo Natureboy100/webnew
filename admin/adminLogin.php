@@ -1,5 +1,5 @@
-<?
-session_start()
+<?php
+    session_start()
 ?>
 
 <!DOCTYPE html>
@@ -49,6 +49,9 @@ if (isset($_POST["bLogin"])) {
     if ($result->num_rows > 0) {
         // output data of each row
         while ($row = $result->fetch_assoc()) {
+
+            $_SESSION['username'] = $name;
+
             header("Location:admin_panel.php");
         }
     } else {

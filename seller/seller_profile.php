@@ -1,3 +1,9 @@
+<?php
+if (!isset($_SESSION['username'])) {
+    header("Location:../logout.php");
+}
+?>
+
 <!doctype html>
 <html lang="en">
 <head>
@@ -25,7 +31,9 @@
     </style>
 </head>
 <body>
-<h1>Hello Seller Talha</h1>
+<h3 style="text-align: right"><a href="seller_logout.php">Logout</a></h3>
+
+<h1>Hello Seller</h1>
 <form class="col-md-4 col-md-offset-4 signUpForm" id="admin_profile_form">
     <h3>Current Username: <?php echo "Hazrat" ?> </h3>
 
