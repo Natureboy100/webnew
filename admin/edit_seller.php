@@ -27,7 +27,7 @@
 <body>
 <h1>Edit Seller Information</h1>
 
-<form class="col-md-4 col-md-offset-4 signUpForm" id="admin_profile_form">
+<form class="col-md-4 col-md-offset-4 signUpForm" id="admin_profile_form" method="post">
     <label for="selectName">Enter The Name Of The Seller You Want To Edit: </label>
     <input type="text" name="Name" id="Name">
     <input type="submit" name="verifyName" value="Verify Name Exists">
@@ -42,13 +42,13 @@
 
 
     <label for="name">Update Full Name: </label>
-    <input type="text" name="name" id="name">
+    <input type="text" name="name2" id="name2">
     <input type="submit" name="updateName" value="Submit Full Name">
 
 
     <label for="age">Update Age: </label>
     <input type="text" name="age" id="age">
-    <input type="submit" name="updateAgge" value="Submit Age">
+    <input type="submit" name="updateAge" value="updateAge">
 
     <label for="address">Update Address: </label>
     <input type="text" name="address" id="address">
@@ -70,15 +70,23 @@ $conn = OpenCon();
 
 if (isset($_POST['verifyName'])) {
     $name=$_POST['Name'];
-    $sql = "SELECT * FROM seller where Name = '$name'";
+    $sql = "SELECT * FROM seller where fullname = '$name'";
     $result=$conn->query($sql);
-    runQuery($sql, $conn,$result);
+    if ($result->num_rows > 0) {
+        // output data of each row
+        while ($row = $result->fetch_assoc()) {
+            echo "<h3>Seller's Account Exists</h3>";
+        }
+    } else {
+        echo "<h3>Your account does not Exist</h3>";
+    }
+
 }
 elseif (isset($_POST['updateUsername'])) {
     $name=$_POST['Name'];
     $username=$_POST['username'];
-    $sql="UPDATE seller SET username= '$username' WHERE fullName='$name'";
-    $result=$conn->query($sql);
+    $sql = "UPDATE seller SET username= '$username' WHERE fullName='$name'";
+    $result = $conn->query($sql);
     runQuery($sql, $conn,$result);
 }
 elseif (isset($_POST['updatePasword'])) {
@@ -90,31 +98,40 @@ elseif (isset($_POST['updatePasword'])) {
 }
 elseif (isset($_POST['updateName'])) {
     $name=$_POST['Name'];
-    $name=$_POST['name'];
-    $sql="UPDATE seller SET fullName= '$name' WHERE fullName='$name'";
+    $name2=$_POST['name2'];
+    $sql="UPDATE seller SET fullName='$name2' WHERE fullName='$name'";
     $result=$conn->query($sql);
     runQuery($sql, $conn,$result);
 }
 elseif (isset($_POST['updateAge'])) {
     $name=$_POST['Name'];
     $age=$_POST['age'];
-    $sql="UPDATE seller SET age= '$age' WHERE fullName='$name'";
+    $sql="UPDATE seller SET age=$age WHERE fullName='$name'";
     $result=$conn->query($sql);
     runQuery($sql, $conn,$result);
 }
 elseif (isset($_POST['updateAddress'])) {
     $name=$_POST['Name'];
     $address=$_POST['address'];
-    $sql="UPDATE seller SET address= '$address' WHERE fullName='$name'";
+    $sql="UPDATE seller SET address='$address' WHERE fullName='$name'";
     $result=$conn->query($sql);
     runQuery($sql, $conn,$result);
 }
 elseif (isset($_POST['updatePhNo'])) {
     $name=$_POST['Name'];
     $phNo=$_POST['phNo'];
-    $sql="UPDATE seller SET phoneNumber= '$phNo' WHERE fullName='$name'";
+    $sql="UPDATE seller SET phoneNumber='$phNo' WHERE fullName='$name'";
     $result=$conn->query($sql);
     runQuery($sql, $conn,$result);
+}
+function runQuery($sql,$conn,$result)
+{
+    $result = $conn->query($sql);
+    if ($conn->query($sql) == TRUE) {
+        echo "<br> Posted";
+    } else {
+        echo "Error: " . $sql . "<br>" . $conn->error;
+    }
 }
 $conn->close();
 ?>
