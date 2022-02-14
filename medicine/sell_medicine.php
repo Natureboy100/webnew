@@ -37,7 +37,6 @@ if (!isset($_SESSION['username'])) {
 
 <h1>Sell Medicine</h1>
 
-<h1>Sell Medicine</h1>
 
 <form class="col-md-4 col-md-offset-4 signUpForm" id="admin_profile_form">
     <label for="NameofMedicine">Enter The Name Of The Medicine You Want To Sell: </label>
@@ -78,12 +77,18 @@ if (!isset($_SESSION['username'])) {
         runQuery($sql,$conn,$result);
         $row=mysqli_fetch_array($result);
         $max_id=$row['max_id'];
+        echo "<h1>$seller_id<h1>";
+        echo "<h1>$max_id<h1>";
 
 
+        //Insert into Sales
         $sql="INSERT INTO sales(id, medicineName, DateSold, qtySold, seller_id, customer) VALUES ('$max_id','$NameofMedicine',CURRENT_DATE,$quantity,$seller_id,'$customer');";
         $result=$conn->query($sql);
         runQuery($sql,$conn,$result);
-        $sql = "UPDATE medicine SET mQuantity=mQuantity-$quantity WHERE inputfullname='$NameofMedicine'";
+
+
+        //Update Medicine
+        $sql = "UPDATE medicine SET mQuantity=mQuantity-$quantity WHERE inputfullname='$NameofMedicine';";
 
         if($result = mysqli_query($conn, $sql)){
             if(mysqli_num_rows($result) > 0){
