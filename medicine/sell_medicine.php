@@ -75,21 +75,21 @@ if (!isset($_SESSION['username'])) {
         //Max_id
         $sql="Select Max(id)+1 as max_id from sales;";
         $result=$conn->query($sql);
-        runQuery($sql,$conn,$result);
+        runQuery($sql,$conn);
         $row=mysqli_fetch_array($result);
         $max_id=$row['max_id'];
 
 
-        $sql="INSERT INTO sales(id, medicineName, DateSold, qtySold, seller_id, customer) VALUES ('$max_id','$NameofMedicine',CURRENT_DATE,$quantity,$seller_id,'$customer');";
+        $sql="INSERT INTO sales (id, medicineName, DateSold, qtySold, seller_id, customer) VALUES ('$max_id','$NameofMedicine',CURRENT_DATE,$quantity,$seller_id,'$customer');";
         $result=$conn->query($sql);
-        runQuery($sql,$conn,$result);
+        runQuery($sql,$conn);
         $sql = "UPDATE medicine SET mQuantity=mQuantity-$quantity WHERE inputfullname='$NameofMedicine'";
 
         if($result = mysqli_query($conn, $sql)){
             if(mysqli_num_rows($result) > 0){
 
                 while($row = mysqli_fetch_array($result)){
-                        $sellerid = $row['seller'];
+                    $sellerid = $row['seller'];
                     echo "<td>" . $row['inputfullname'] . "record updated" . "</td>";
 
                     echo "</tr>";
@@ -109,15 +109,15 @@ if (!isset($_SESSION['username'])) {
         # Save-button was clicked
     }
 
-function runQuery($sql,$conn,$result)
-{
-    $result = $conn->query($sql);
-    if ($conn->query($sql) == TRUE) {
-        echo "New record created successfully";
-    } else {
-        echo "Error: " . $sql . "<br>" . $conn->error;
+    function runQuery($sql,$conn)
+    {
+        $result = $conn->query($sql);
+        if ($result == TRUE) {
+            echo "New record created successfully";
+        } else {
+            echo "Error: " . $sql . "<br>" . $conn->error;
+        }
     }
-}
     CloseCon($conn);
 
 ?>
