@@ -14,6 +14,12 @@ if (!isset($_SESSION['username'])) {
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
+    <label for="ID">Enter The id of seller  </label>
+    <form method="post">
+    <input type="text" name="seller" id="seller">
+    <input type="submit" name="pID" value="View Items added to cart">
+    <input type="submit" name="nID" value="Use New ID">
+    </form>
     <style>
         .fSearch {
             margin: 0 auto;
@@ -28,6 +34,7 @@ if (!isset($_SESSION['username'])) {
             margin: 0 auto;
         }
 
+
     </style>
 </head>
 <body>
@@ -37,12 +44,10 @@ if (!isset($_SESSION['username'])) {
 
 <?php
     include ("../Database/database.php");
-    include ("medicine/receipt.php");
     $conn = OpenCon();
-
-
-//Select SUM(qtySold),Sum(price), SUM(qtySold)*Sum(price) as Total  from sales  where id=1;
-    $sql = "Select * from sales  where id=3;";
+if (isset($_POST['nID'])) {
+    $id=$_POST['seller'];
+    $sql = "Select * from sales  where id=$id;";
     if ($result = mysqli_query($conn, $sql)) {
         if (mysqli_num_rows($result) > 0) {
 
@@ -79,31 +84,104 @@ if (!isset($_SESSION['username'])) {
         echo "ERROR: Could not able to execute $sql. " . mysqli_error($conn);
     }
     $sql="Select SUM(qtySold) as SumQty,Sum(price) as SumPrice, SUM(qtySold)*Sum(price) as Total  from sales  where id=1;";
-if ($result = mysqli_query($conn, $sql)) {
-    if (mysqli_num_rows($result) > 0) {
-        echo "<table>";
-        echo "<tr>";
-        echo "<th>Sum of qtySold</th>";
-        echo "<th>Sum of Price of each product individually</th>";
-        echo "<th>Total Bill</th>";
-        echo "</tr>";
-
-        while ($row = mysqli_fetch_array($result)) {
+    if ($result = mysqli_query($conn, $sql)) {
+        if (mysqli_num_rows($result) > 0) {
+            echo "<table>";
             echo "<tr>";
-            echo "<td>" . $row['SumQty'] . "</td>";
-            echo "<td>" ."$". $row['SumPrice'] . "</td>";
-            echo "<td>" ."$". $row['Total'] . "</td>";
+            echo "<th>Sum of qtySold</th>";
+            echo "<th>Sum of Price of each product individually</th>";
+            echo "<th>Total Bill</th>";
             echo "</tr>";
+
+            while ($row = mysqli_fetch_array($result)) {
+                echo "<tr>";
+                echo "<td>" . $row['SumQty'] . "</td>";
+                echo "<td>" ."$". $row['SumPrice'] . "</td>";
+                echo "<td>" ."$". $row['Total'] . "</td>";
+                echo "</tr>";
+            }
+            echo "</table>";
+            // Close result set
+            mysqli_free_result($result);
+        } else {
+            echo "No records matching your query were found.";
         }
-        echo "</table>";
-        // Close result set
-        mysqli_free_result($result);
     } else {
-        echo "No records matching your query were found.";
+        echo "ERROR: Could not able to execute $sql. " . mysqli_error($conn);
     }
-} else {
-    echo "ERROR: Could not able to execute $sql. " . mysqli_error($conn);
+
 }
+elseif (isset($_POST['pID'])) {
+    $sql="Select Max(id) as max_id from sales;";
+    $result=$conn->query($sql);
+    $row=mysqli_fetch_array($result);
+    $max_id=$row['max_id'];
+    $sql = "Select * from sales  where id=$max_id;";
+    if ($result = mysqli_query($conn, $sql)) {
+        if (mysqli_num_rows($result) > 0) {
+
+            echo "<h1>Receipt</h1>";
+            echo "<table>";
+            echo "<tr>";
+            echo "<th>id</th>";
+            echo "<th>medicineName</th>";
+            echo "<th>DateSold</th>";
+            echo "<th>qtySold</th>";
+            echo "<th>seller_id</th>";
+            echo "<th>Price</th>";
+            echo "<th>customer</th>";
+            echo "</tr>";
+
+            while ($row = mysqli_fetch_array($result)) {
+                echo "<tr>";
+                echo "<td>" . $row['id'] . "</td>";
+                echo "<td>" . $row['medicineName'] . "</td>";
+                echo "<td>" . $row['DateSold'] . "</td>";
+                echo "<td>" . $row['qtySold'] . "</td>";
+                echo "<td>" . $row['seller_id'] . "</td>";
+                echo "<td>" ."$". $row['price'] . "</td>";
+                echo "<td>" . $row['customer'] . "</td>";
+                echo "</tr>";
+            }
+            echo "</table>";
+            // Close result set
+            mysqli_free_result($result);
+        } else {
+            echo "No records matching your query were found.";
+        }
+    } else {
+        echo "ERROR: Could not able to execute $sql. " . mysqli_error($conn);
+    }
+    $sql="Select SUM(qtySold) as SumQty,Sum(price) as SumPrice, SUM(qtySold)*Sum(price) as Total  from sales  where id=1;";
+    if ($result = mysqli_query($conn, $sql)) {
+        if (mysqli_num_rows($result) > 0) {
+            echo "<table>";
+            echo "<tr>";
+            echo "<th>Sum of qtySold</th>";
+            echo "<th>Sum of Price of each product individually</th>";
+            echo "<th>Total Bill</th>";
+            echo "</tr>";
+
+            while ($row = mysqli_fetch_array($result)) {
+                echo "<tr>";
+                echo "<td>" . $row['SumQty'] . "</td>";
+                echo "<td>" ."$". $row['SumPrice'] . "</td>";
+                echo "<td>" ."$". $row['Total'] . "</td>";
+                echo "</tr>";
+            }
+            echo "</table>";
+            // Close result set
+            mysqli_free_result($result);
+        } else {
+            echo "No records matching your query were found.";
+        }
+    } else {
+        echo "ERROR: Could not able to execute $sql. " . mysqli_error($conn);
+    }
+
+}
+
+//Select SUM(qtySold),Sum(price), SUM(qtySold)*Sum(price) as Total  from sales  where id=1;
 
 
 

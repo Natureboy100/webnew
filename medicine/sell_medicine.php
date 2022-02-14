@@ -45,7 +45,8 @@ if (!isset($_SESSION['username'])) {
     <label for="Customer">Enter The Name Of The Customer to whom You Want To Sell: </label>
     <input type="text" name="Customer" id="Customer">
 
-
+    <label for="Price">Enter Price: </label>
+    <input type="text" name="price" id="price">
 
     <label for="quantity">Quantity To Sell: </label>
     <input type="number" name="quantity" id="quantity">
@@ -64,11 +65,9 @@ if (!isset($_SESSION['username'])) {
     if (isset($_POST["bAddToCart"])) {
         //Varibles
         $NameofMedicine = $_POST["NameofMedicine"];
-        //$quantity = $_POST["quantity"];
-        $quantity=1000;
-    $seller_id=$_SESSION['seller_id'];
-    //$seller_id=1000;
-    $customer= $_POST["Customer"];
+        $quantity = $_POST["quantity"];
+        $seller_id=1000;
+        $customer= $_POST["Customer"];
 
 //        Trying to verify if medicine exists and then minus the qty from it
 //        Then, echo medicine added to cart with same receipt id.
@@ -80,12 +79,13 @@ if (!isset($_SESSION['username'])) {
         runQuery($sql,$conn,$result);
         $row=mysqli_fetch_array($result);
         $max_id=$row['max_id'];
+        $price=$_POST['price'];
         echo "<h1>$seller_id<h1>";
         echo "<h1>$max_id<h1>";
 
 
         //Insert into Sales
-        $sql="INSERT INTO sales(id, medicineName, DateSold, qtySold, seller_id, price,customer) VALUES ('$max_id','$NameofMedicine','02/22',$quantity,$seller_id,20,'$customer');";
+        $sql="INSERT INTO sales(id, medicineName, DateSold, qtySold, seller_id, price,customer) VALUES ('$max_id','$NameofMedicine','02/22',$quantity,$seller_id,$price,'$customer');";
         $result=$conn->query($sql);
         if ($conn->query($sql) == TRUE) {
             echo "New record created successfully";
@@ -98,6 +98,7 @@ if (!isset($_SESSION['username'])) {
 
         //Update Medicine
         $sql = "UPDATE medicine SET mQuantity=mQuantity-$quantity WHERE inputfullname='$NameofMedicine';";
+
         if ($conn->query($sql) == TRUE) {
             echo "New record created successfully";
         }
@@ -105,28 +106,11 @@ if (!isset($_SESSION['username'])) {
             echo "Error: " . $sql . "<br>" . $conn->error;
         }
 
-        if($result = mysqli_query($conn, $sql)){
-            if(mysqli_num_rows($result) > 0){
 
-                while($row = mysqli_fetch_array($result)){
-                    $sellerid = $row['seller'];
-                    echo "<td>" . $row['inputfullname'] . "record updated" . "</td>";
-
-                    echo "</tr>";
-                }
-                echo "</table>";
-                // Close result set
-                mysqli_free_result($result);
-            } else{
-                echo "No records matching your query were found.";
-            }
-        } else{
-            echo "ERROR: Could not able to execute $sql. " . mysqli_error($conn);
-        }
     }
 
     elseif (isset($_POST['checkOut'])) {
-        # Save-button was clicked
+        header("Location:receipt.php");
     }
 
     function runQuery($sql,$conn)
