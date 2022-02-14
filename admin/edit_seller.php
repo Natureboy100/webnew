@@ -70,12 +70,13 @@ $conn = OpenCon();
 if (isset($_POST['verifyName'])) {
     $name=$_POST['Name'];
     $sql="";
+    
     $result=$conn->query($sql);
     runQuery($sql, $conn,$result);
 }
 elseif (isset($_POST['updateUsername'])) {
     $name=$_POST['Name'];
-    $username=$_POST['username']
+    $username=$_POST['username'];
     $sql="UPDATE seller SET username= '$username' WHERE fullName='$name'";
     $result=$conn->query($sql);
     runQuery($sql, $conn,$result);
