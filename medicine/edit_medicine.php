@@ -67,7 +67,7 @@
 
     <label for="quantity">Update Quantity: </label>
     <input type="number" name="quantity" id="quantity">
-    <input type="submit" name="updateQuantity" value="Update Quantity">
+    <input type="submit" name="updateQuantity" value="update Quantity">
 
 </form>
 
@@ -105,21 +105,21 @@ if (isset($_POST['bNameofMedicine'])) {
     $sql = "UPDATE medicine SET mDescription='$description' WHERE inputfullname='$inputfullname'";$result=$conn->query($sql);
     runQuery($sql, $conn,$result);
 } elseif (isset($_POST['bMedicinePrice'])) {
-    $inputfullname = $_POST['MedicinePrice'];
-    $price = $_POST['oldNameofMedicine'];
+    $inputfullname = $_POST['oldNameofMedicine'];
+    $price =$_POST['MedicinePrice'];
     # Save-button was clicked
     $sql = "UPDATE medicine SET mPrice='$price' WHERE inputfullname='$inputfullname'";$result=$conn->query($sql);
     runQuery($sql, $conn,$result);
 } elseif (isset($_POST['updateQuantity'])){
     $inputfullname = $_POST['oldNameofMedicine'];
-    $quantity = $_POST['mQuantity'];
+    $quantity = $_POST['quantity'];
     # Save-button was clicked
     $sql = "UPDATE medicine SET mQuantity=$quantity WHERE inputfullname='$inputfullname'";$result=$conn->query($sql);
     runQuery($sql, $conn,$result);
 }
 elseif (isset($_POST['bCompanyName'])) {
 $inputfullname = $_POST['oldNameofMedicine'];
-    $company = $_POST['mCompany'];
+    $company = $_POST['CompanyName'];
     # Save-button was clicked
     $sql = "UPDATE medicine SET mCompany='$company' WHERE inputfullname='$inputfullname'";$result=$conn->query($sql);
     runQuery($sql, $conn,$result);
@@ -133,7 +133,7 @@ elseif (isset($_POST['bUsage'])) {
 }
 elseif (isset($_POST['bDoseDescription'])) {
      $inputfullname = $_POST['oldNameofMedicine'];
-    $dose = $_POST['mDose'];
+    $dose = $_POST['DoseDescription'];
     # Save-button was clicked
     $sql = "UPDATE medicine SET mDose='$dose' WHERE inputfullname='$inputfullname'";$result=$conn->query($sql);
     runQuery($sql, $conn,$result);
