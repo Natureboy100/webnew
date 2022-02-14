@@ -74,8 +74,8 @@ if (!isset($_SESSION['username'])) {
 </body>
 </html>
 <?php
-include ("../Database/database.php");
-$conn = OpenCon();
+    include ("../Database/database.php");
+    $conn = OpenCon();
 
 
     if (isset($_POST['verifyName'])) {
