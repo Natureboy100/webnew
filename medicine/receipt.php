@@ -42,7 +42,7 @@ if (!isset($_SESSION['username'])) {
 
 
 //Select SUM(qtySold),Sum(price), SUM(qtySold)*Sum(price) as Total  from sales  where id=1;
-    $sql = "Select * from sales  where id=1;";
+    $sql = "Select * from sales  where id=3;";
     if ($result = mysqli_query($conn, $sql)) {
         if (mysqli_num_rows($result) > 0) {
 
@@ -84,7 +84,7 @@ if ($result = mysqli_query($conn, $sql)) {
         echo "<table>";
         echo "<tr>";
         echo "<th>Sum of qtySold</th>";
-        echo "<th>Sum of Price</th>";
+        echo "<th>Sum of Price of each product individually</th>";
         echo "<th>Total Bill</th>";
         echo "</tr>";
 

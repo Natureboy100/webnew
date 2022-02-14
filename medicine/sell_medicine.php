@@ -37,17 +37,19 @@ if (!isset($_SESSION['username'])) {
 
 <h1>Sell Medicine</h1>
 
+<h1>Sell Medicine</h1>
+
 <form class="col-md-4 col-md-offset-4 signUpForm" id="admin_profile_form">
     <label for="NameofMedicine">Enter The Name Of The Medicine You Want To Sell: </label>
     <input type="text" name="NameofMedicine" id="NameofMedicine">
-    <input type="submit" name="bNameofMedicine" value="Verify Medicine Exists">
 
-    <h3>Current Quantity: <?php echo "19" ?></h3>
 
 
     <label for="quantity">Quantity To Sell: </label>
     <input type="number" name="quantity" id="quantity">
-    <input type="submit" name="updateQuantity" value="Update Quantity">
+    <input type="submit" name="bAddToCart" value="Add To Cart">
+
+    <input type="submit" name="checkOut" value="Check Out">
 
 </form>
 
@@ -60,18 +62,20 @@ if (!isset($_SESSION['username'])) {
     if (isset($_POST["bAddToCart"])) {
         $NameofMedicine = $_POST["NameofMedicine"];
         $quantity = $_POST["quantity"];
+        $seller_id
+        $customer= $_POST["quantity"];
 
 //        Trying to verify if medicine exists and then minus the qty from it
 //        Then, echo medicine added to cart with same receipt id.
 //        If checkout clicked, it will made a whole receipt.
-
-        $sql = "UPDATE medicine if(mQty-'$quantity'>0) SET mQty=mQty-'$quantity' WHERE inputfullname='$NameofMedicine'";
+        $sql="INSERT INTO `sales`(`id`, `medicineName`, `DateSold`, `qtySold`, `seller_id`, `customer`) VALUES (DEFAULT,'$medicineName',CURRENT_DATE,$quantity,$seller_id,'$customer')";
+        $sql = "UPDATE medicine SET mQuantity=mQuantity-$quantity WHERE inputfullname='$NameofMedicine'";
 
         if($result = mysqli_query($conn, $sql)){
             if(mysqli_num_rows($result) > 0){
 
                 while($row = mysqli_fetch_array($result)){
-
+                        $sellerid = $row['seller'];
                     echo "<td>" . $row['inputfullname'] . "record updated" . "</td>";
 
                     echo "</tr>";
@@ -85,7 +89,10 @@ if (!isset($_SESSION['username'])) {
         } else{
             echo "ERROR: Could not able to execute $sql. " . mysqli_error($conn);
         }
+    }
 
+    elseif (isset($_POST['checkOut'])) {
+        # Save-button was clicked
     }
 
     CloseCon($conn);
