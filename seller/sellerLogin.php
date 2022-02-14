@@ -49,6 +49,7 @@
         if ($result->num_rows > 0) {
             // output data of each row
             while($row = $result->fetch_assoc()) {
+                $_SESSION['seller_id'] = $row['id'];
                 $_SESSION['username'] = $name;
 
                 header("Location:seller_panel.php");

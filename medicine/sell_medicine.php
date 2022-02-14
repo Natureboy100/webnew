@@ -43,6 +43,9 @@ if (!isset($_SESSION['username'])) {
     <label for="NameofMedicine">Enter The Name Of The Medicine You Want To Sell: </label>
     <input type="text" name="NameofMedicine" id="NameofMedicine">
 
+    <label for="Customer">Enter The Name Of The Customer to whom You Want To Sell: </label>
+    <input type="text" name="Customer" id="Customer">
+
 
 
     <label for="quantity">Quantity To Sell: </label>
@@ -62,13 +65,24 @@ if (!isset($_SESSION['username'])) {
     if (isset($_POST["bAddToCart"])) {
         $NameofMedicine = $_POST["NameofMedicine"];
         $quantity = $_POST["quantity"];
-        $seller_id
-        $customer= $_POST["quantity"];
+        $seller_id=$_SESSION['seller_id'];
+        $customer= $_POST["Customer"];
 
 //        Trying to verify if medicine exists and then minus the qty from it
 //        Then, echo medicine added to cart with same receipt id.
 //        If checkout clicked, it will made a whole receipt.
-        $sql="INSERT INTO `sales`(`id`, `medicineName`, `DateSold`, `qtySold`, `seller_id`, `customer`) VALUES (DEFAULT,'$medicineName',CURRENT_DATE,$quantity,$seller_id,'$customer')";
+//        receipt - most value + 1
+        //Max_id
+        $sql="Select Max(id)+1 as max_id from sales;";
+        $result=$conn->query($sql);
+        runQuery($sql,$conn,$result);
+        $row=mysqli_fetch_array($result);
+        $max_id=$row['max_id'];
+
+
+        $sql="INSERT INTO sales(id, medicineName, DateSold, qtySold, seller_id, customer) VALUES ('$max_id','$NameofMedicine',CURRENT_DATE,$quantity,$seller_id,'$customer');";
+        $result=$conn->query($sql);
+        runQuery($sql,$conn,$result);
         $sql = "UPDATE medicine SET mQuantity=mQuantity-$quantity WHERE inputfullname='$NameofMedicine'";
 
         if($result = mysqli_query($conn, $sql)){
@@ -95,6 +109,15 @@ if (!isset($_SESSION['username'])) {
         # Save-button was clicked
     }
 
+function runQuery($sql,$conn,$result)
+{
+    $result = $conn->query($sql);
+    if ($conn->query($sql) == TRUE) {
+        echo "New record created successfully";
+    } else {
+        echo "Error: " . $sql . "<br>" . $conn->error;
+    }
+}
     CloseCon($conn);
 
 ?>
