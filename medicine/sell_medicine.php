@@ -38,7 +38,7 @@ if (!isset($_SESSION['username'])) {
 <h1>Sell Medicine</h1>
 
 
-<form class="col-md-4 col-md-offset-4 signUpForm" id="admin_profile_form">
+<form class="col-md-4 col-md-offset-4 signUpForm" id="admin_profile_form" method="post">
     <label for="NameofMedicine">Enter The Name Of The Medicine You Want To Sell: </label>
     <input type="text" name="NameofMedicine" id="NameofMedicine">
 
@@ -62,10 +62,13 @@ if (!isset($_SESSION['username'])) {
     $conn = OpenCon();
 
     if (isset($_POST["bAddToCart"])) {
+        //Varibles
         $NameofMedicine = $_POST["NameofMedicine"];
-        $quantity = $_POST["quantity"];
-        $seller_id=$_SESSION['seller_id'];
-        $customer= $_POST["Customer"];
+        //$quantity = $_POST["quantity"];
+        $quantity=1000;
+    $seller_id=$_SESSION['seller_id'];
+    //$seller_id=1000;
+    $customer= $_POST["Customer"];
 
 //        Trying to verify if medicine exists and then minus the qty from it
 //        Then, echo medicine added to cart with same receipt id.
@@ -74,7 +77,7 @@ if (!isset($_SESSION['username'])) {
         //Max_id
         $sql="Select Max(id)+1 as max_id from sales;";
         $result=$conn->query($sql);
-        runQuery($sql,$conn);
+        runQuery($sql,$conn,$result);
         $row=mysqli_fetch_array($result);
         $max_id=$row['max_id'];
         echo "<h1>$seller_id<h1>";
@@ -101,12 +104,7 @@ if (!isset($_SESSION['username'])) {
         else {
             echo "Error: " . $sql . "<br>" . $conn->error;
         }
-        if ($conn->query($sql) == TRUE) {
-            echo "New record created successfully";
-        }
-        else {
-            echo "Error: " . $sql . "<br>" . $conn->error;
-        }
+
         if($result = mysqli_query($conn, $sql)){
             if(mysqli_num_rows($result) > 0){
 
