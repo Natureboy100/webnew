@@ -66,11 +66,24 @@
 <?php
 include ("../Database/database.php");
 $conn = OpenCon();
+$sql = "SELECT * FROM seller where Name = '$name'";
+if ($result = mysqli_query($conn, $sql)) {
+    if (mysqli_num_rows($result) > 0) {
+        while ($row = mysqli_fetch_array($result)) {
+           // it means that seller exists
+        }
+        // Close result set
+        mysqli_free_result($result);
+    } else {
+        echo "No records matching your query were found.";
+    }
+} else {
+    echo "ERROR: Could not able to execute $sql. " . mysqli_error($conn);
+}
 
 if (isset($_POST['verifyName'])) {
     $name=$_POST['Name'];
     $sql="";
-    
     $result=$conn->query($sql);
     runQuery($sql, $conn,$result);
 }
