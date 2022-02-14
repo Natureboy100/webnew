@@ -81,22 +81,32 @@ if (!isset($_SESSION['username'])) {
         echo "<h1>$max_id<h1>";
 
 
-<<<<<<< HEAD
         //Insert into Sales
-        $sql="INSERT INTO sales(id, medicineName, DateSold, qtySold, seller_id, customer) VALUES ('$max_id','$NameofMedicine',CURRENT_DATE,$quantity,$seller_id,'$customer');";
+        $sql="INSERT INTO sales(id, medicineName, DateSold, qtySold, seller_id, customer) VALUES ('$max_id','$NameofMedicine','02/22',$quantity,$seller_id,20,'$customer');";
         $result=$conn->query($sql);
-        runQuery($sql,$conn,$result);
+        if ($conn->query($sql) == TRUE) {
+            echo "New record created successfully";
+        }
+        else {
+            echo "Error: " . $sql . "<br>" . $conn->error;
+        }
+
 
 
         //Update Medicine
         $sql = "UPDATE medicine SET mQuantity=mQuantity-$quantity WHERE inputfullname='$NameofMedicine';";
-=======
-        $sql="INSERT INTO sales (id, medicineName, DateSold, qtySold, seller_id, customer) VALUES ('$max_id','$NameofMedicine',CURRENT_DATE,$quantity,$seller_id,'$customer');";
-        $result=$conn->query($sql);
-        runQuery($sql,$conn);
-        $sql = "UPDATE medicine SET mQuantity=mQuantity-$quantity WHERE inputfullname='$NameofMedicine'";
->>>>>>> a4f036b3821fc02306d2c86afcbc28e5681f87f9
-
+        if ($conn->query($sql) == TRUE) {
+            echo "New record created successfully";
+        }
+        else {
+            echo "Error: " . $sql . "<br>" . $conn->error;
+        }
+        if ($conn->query($sql) == TRUE) {
+            echo "New record created successfully";
+        }
+        else {
+            echo "Error: " . $sql . "<br>" . $conn->error;
+        }
         if($result = mysqli_query($conn, $sql)){
             if(mysqli_num_rows($result) > 0){
 
