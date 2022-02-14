@@ -37,15 +37,16 @@ if (!isset($_SESSION['username'])) {
 
 <?php
     include ("../Database/database.php");
+    include ("medicine/receipt.php");
     $conn = OpenCon();
 
 
-
-    $sql = "SELECT * FROM receipt WHERE = ''";
+//Select SUM(qtySold),Sum(price), SUM(qtySold)*Sum(price) as Total  from sales  where id=1;
+    $sql = "Select * from sales  where id=1;";
     if ($result = mysqli_query($conn, $sql)) {
         if (mysqli_num_rows($result) > 0) {
 
-            echo "<h1>Receipt</h1>"
+            echo "<h1>Receipt</h1>";
             echo "<table>";
             echo "<tr>";
             echo "<th>id</th>";
@@ -77,6 +78,32 @@ if (!isset($_SESSION['username'])) {
     } else {
         echo "ERROR: Could not able to execute $sql. " . mysqli_error($conn);
     }
+    $sql="Select SUM(qtySold) as SumQty,Sum(price) as SumPrice, SUM(qtySold)*Sum(price) as Total  from sales  where id=1;";
+if ($result = mysqli_query($conn, $sql)) {
+    if (mysqli_num_rows($result) > 0) {
+        echo "<table>";
+        echo "<tr>";
+        echo "<th>Sum of qtySold</th>";
+        echo "<th>Sum of Price</th>";
+        echo "<th>Total Bill</th>";
+        echo "</tr>";
+
+        while ($row = mysqli_fetch_array($result)) {
+            echo "<tr>";
+            echo "<td>" . $row['SumQty'] . "</td>";
+            echo "<td>" . $row['SumPrice'] . "</td>";
+            echo "<td>" . $row['Total'] . "</td>";
+            echo "</tr>";
+        }
+        echo "</table>";
+        // Close result set
+        mysqli_free_result($result);
+    } else {
+        echo "No records matching your query were found.";
+    }
+} else {
+    echo "ERROR: Could not able to execute $sql. " . mysqli_error($conn);
+}
 
 
 
