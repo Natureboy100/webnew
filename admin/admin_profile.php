@@ -14,7 +14,7 @@ if (!isset($_SESSION['username'])) {
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
-    <title>admin Profile</title>
+    <title>Admin Profile</title>
 
     <link href="../bootstrap_css/bootstrap.min.css" rel="stylesheet">
 
@@ -70,68 +70,76 @@ if (!isset($_SESSION['username'])) {
 </form>
 
 <?php
-include ("../Database/database.php");
-$conn = OpenCon();
-if (isset($_POST['updateAddress'])) {
-    $name=$_POST['Name'];
-    $address=$_POST['address'];
-    $sql="UPDATE admin SET address='$address' WHERE fullName='$name'";
-    $result=$conn->query($sql);
-    runQuery($sql, $conn,$result);
-}
-if (isset($_POST['updatePhNo'])) {
-    $name=$_POST['Name'];
-    $phNo=$_POST['phNo'];
-    $sql="UPDATE admin SET phoneNumber='$phNo' WHERE fullName='$name'";
-    $result=$conn->query($sql);
-    runQuery($sql, $conn,$result);
-}
-if (isset($_POST['newPassword'])) {
-    $name=$_POST['Name'];
-    $Password=$_POST['Password'];
-    $sql="UPDATE admin SET password= '$Password' WHERE fullName='$name'";
-    $result=$conn->query($sql);
-    runQuery($sql, $conn,$result);
-}
-if (isset($_POST['updateName'])) {
-    $name=$_POST['Name'];
-    $name2=$_POST['name2'];
-    $sql="UPDATE admin SET fullName='$name2' WHERE fullName='$name'";
-    $result=$conn->query($sql);
-    runQuery($sql, $conn,$result);
-}
-if (isset($_POST['updateAge'])) {
-    $name=$_POST['Name'];
-    $age=$_POST['age'];
-    $sql="UPDATE admin SET age=$age WHERE fullName='$name'";
-    $result=$conn->query($sql);
-    runQuery($sql, $conn,$result);
-}
-if (isset($_POST['updateAddress'])) {
-    $name=$_POST['Name'];
-    $address=$_POST['address'];
-    $sql="UPDATE admin SET address='$address' WHERE fullName='$name'";
-    $result=$conn->query($sql);
-    runQuery($sql, $conn,$result);
-}
-if (isset($_POST['updatePhNo'])) {
-    $name=$_POST['Name'];
-    $phNo=$_POST['phNo'];
-    $sql="UPDATE admin SET phoneNumber='$phNo' WHERE fullName='$name'";
-    $result=$conn->query($sql);
-    runQuery($sql, $conn,$result);
-}
-function runQuery($sql,$conn,$result)
-{
-    $result = $conn->query($sql);
-    if ($conn->query($sql) == TRUE) {
-        echo "<br> Posted";
-    } else {
-        echo "Error: " . $sql . "<br>" . $conn->error;
+    include ("../Database/database.php");
+    $conn = OpenCon();
+    if (isset($_POST['updateAddress'])) {
+        $name=$_POST['Name'];
+        $address=$_POST['address'];
+        $sql="UPDATE admin SET address='$address' WHERE fullName='$name'";
+        $result=$conn->query($sql);
+        runQuery($sql, $conn,$result);
     }
-}
-echo "Query Successful";
-$conn->close();
+    if (isset($_POST['updatePhNo'])) {
+        $name=$_POST['Name'];
+        $phNo=$_POST['phNo'];
+        $sql="UPDATE admin SET phoneNumber='$phNo' WHERE fullName='$name'";
+        $result=$conn->query($sql);
+        runQuery($sql, $conn,$result);
+    }
+    if (isset($_POST['newPassword']) && isset($_POST['againPassword']) && isset($_POST['Password'])) {
+        $name=$_POST['Name'];
+        $Password=$_POST['Password'];
+        $againPassword=$_POST['againPassword'];
+        $newPassword=$_POST['newPassword'];
+
+        if ($newPassword == $againPassword) {
+            $sql="UPDATE admin SET password= '$newPassword' WHERE fullName='$name'";
+            $result=$conn->query($sql);
+            runQuery($sql, $conn,$result);
+        }
+        
+
+        
+    }
+    if (isset($_POST['updateName'])) {
+        $name=$_POST['Name'];
+        $name2=$_POST['name2'];
+        $sql="UPDATE admin SET fullName='$name2' WHERE fullName='$name'";
+        $result=$conn->query($sql);
+        runQuery($sql, $conn,$result);
+    }
+    if (isset($_POST['updateAge'])) {
+        $name=$_POST['Name'];
+        $age=$_POST['age'];
+        $sql="UPDATE admin SET age=$age WHERE fullName='$name'";
+        $result=$conn->query($sql);
+        runQuery($sql, $conn,$result);
+    }
+    if (isset($_POST['updateAddress'])) {
+        $name=$_POST['Name'];
+        $address=$_POST['address'];
+        $sql="UPDATE admin SET address='$address' WHERE fullName='$name'";
+        $result=$conn->query($sql);
+        runQuery($sql, $conn,$result);
+    }
+    if (isset($_POST['updatePhNo'])) {
+        $name=$_POST['Name'];
+        $phNo=$_POST['phNo'];
+        $sql="UPDATE admin SET phoneNumber='$phNo' WHERE fullName='$name'";
+        $result=$conn->query($sql);
+        runQuery($sql, $conn,$result);
+    }
+    function runQuery($sql,$conn,$result)
+    {
+        $result = $conn->query($sql);
+        if ($conn->query($sql) == TRUE) {
+            echo "<br> Posted";
+        } else {
+            echo "Error: " . $sql . "<br>" . $conn->error;
+        }
+    }
+    echo "Query Successful";
+    $conn->close();
 ?>
 
 </body>

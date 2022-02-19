@@ -97,7 +97,7 @@ if (!isset($_SESSION['username'])) {
 
 
         //Update Medicine
-        $sql = "UPDATE medicine SET mQuantity=mQuantity-$quantity WHERE inputfullname='$NameofMedicine';";
+        $sql = "UPDATE medicine SET mQty=mQty-$quantity WHERE inputfullname='$NameofMedicine';";
 
         if ($conn->query($sql) == TRUE) {
             echo "New record created successfully";

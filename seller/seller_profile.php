@@ -14,7 +14,7 @@ if (!isset($_SESSION['username'])) {
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
-    <title>admin Profile</title>
+    <title>Seller Profile</title>
 
     <link href="../bootstrap_css/bootstrap.min.css" rel="stylesheet">
 
@@ -34,7 +34,7 @@ if (!isset($_SESSION['username'])) {
 </head>
 <body>
 <h3 style="text-align: right"><a href="../logout.php">Logout</a></h3>
-<h1>Hello Admin</h1>
+<h1>Hello Seller</h1>
 <form class="col-md-4 col-md-offset-4 signUpForm" id="admin_profile_form" method="post">
 
     <label for="name">Enter Full Name: </label>
@@ -86,12 +86,20 @@ if (!isset($_SESSION['username'])) {
         $result=$conn->query($sql);
         runQuery($sql, $conn,$result);
     }
-    if (isset($_POST['newPassword'])) {
+    if (isset($_POST['newPassword']) && isset($_POST['againPassword']) && isset($_POST['Password'])) {
         $name=$_POST['Name'];
         $Password=$_POST['Password'];
-        $sql="UPDATE seller SET password= '$Password' WHERE fullName='$name'";
-        $result=$conn->query($sql);
-        runQuery($sql, $conn,$result);
+        $againPassword=$_POST['againPassword'];
+        $newPassword=$_POST['newPassword'];
+
+        if ($newPassword == $againPassword) {
+            $sql="UPDATE seller SET password= '$newPassword' WHERE fullName='$name'";
+            $result=$conn->query($sql);
+            runQuery($sql, $conn,$result);
+        }
+        
+
+        
     }
     if (isset($_POST['updateName'])) {
         $name=$_POST['Name'];
