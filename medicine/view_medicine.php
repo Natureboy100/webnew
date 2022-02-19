@@ -95,10 +95,10 @@ if (!isset($_SESSION['username'])) {
             echo "<th>inputfullname</th>";
             echo "<th>mType</th>";
             echo "<th>mDescription</th>";
-            echo "<th>mPrice</th>";
             echo "<th>mQuantity</th>";
-            echo "<th>mCompany</th>";
             echo "<th>mDose</th>";
+            echo "<th>mCompany</th>";
+            echo "<th>mPrice</th>";
             echo "</tr>";
             while($row = mysqli_fetch_array($result)){
                 echo "<tr>";
