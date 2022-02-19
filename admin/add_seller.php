@@ -84,10 +84,6 @@ if (!isset($_SESSION['username'])) {
         <input type="email" class="form-control" id="inputEmail" name="inputEmail">
     </div>
     <div class="form-row">
-        <label for="inputusername">Address</label>
-        <input type="text" class="form-control" id="inputusername" name="inputusername">
-    </div>
-    <div class="form-row">
         <label for="inputAge">Your Age</label>
         <input type="text" class="form-control" id="inputAge" name="inputAge">
     </div>
@@ -100,12 +96,12 @@ if (!isset($_SESSION['username'])) {
         <input type="text" class="form-control" id="inputphNO" name="inputphNO">
     </div>
     <div class="form-row">
-        <label for="inputpassword">Current Password</label>
+        <label for="inputpassword">Enter Password</label>
         <input type="password" class="form-control" id="inputpassword" name="inputpassword">
     </div>
     <div class="form-row">
         <label for="address">address</label>
-        <input type="password" class="form-control" id="address" name="address">
+        <input type="text" class="form-control" id="address" name="address">
     </div>
 
     <button type="submit" name="submit"  class="btn btn-primary">Submit</button>
@@ -119,21 +115,22 @@ if (!isset($_SESSION['username'])) {
     if (isset($_POST['submit'])) {
         $inputfullname=$_POST['inputfullname'];
         $inputusername=$_POST['inputusername'];
-        $inputnewPassword=$_POST['inputPassword'];
+        $inputnewPassword=$_POST['inputpassword'];
         $inputAddress=$_POST['address'];
         $inputAge=$_POST['inputAge'];
         $inputEmail=$_POST['inputEmail'];
         $inputphNO=$_POST['inputphNO'];
-        $sql = "INSERT INTO seller('id', 'fullName', 'username', 'password', 'address', 'age', 'email', 'phoneNumber') VALUES (DEFAULT,'$inputfullname','$inputusername','$inputnewPassword','$inputAddress','$inputAge','$inputEmail','$inputphNO')";
+        $sql = "INSERT INTO seller(fullName', 'username', 'password', 'address', 'age', 'email', 'phoneNumber') VALUES ('$inputfullname','$inputusername','$inputnewPassword','$inputAddress',$inputAge,'$inputEmail','$inputphNO');";
         $result=$conn->query($sql);
-        if ($conn->query($sql) == TRUE) {
+        if ($result == TRUE) {
             echo "New record created successfully";
         }
         else {
             echo "Error: " . $sql . "<br>" . $conn->error;
         }
-        mysqli_close($conn);;
+        
     }
+    CloseCon($conn);
 
 
 
