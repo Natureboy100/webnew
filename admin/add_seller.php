@@ -120,7 +120,7 @@ if (!isset($_SESSION['username'])) {
         $inputAge=$_POST['inputAge'];
         $inputEmail=$_POST['inputEmail'];
         $inputphNO=$_POST['inputphNO'];
-        $sql = "INSERT INTO seller(fullName', 'username', 'password', 'address', 'age', 'email', 'phoneNumber') VALUES ('$inputfullname','$inputusername','$inputnewPassword','$inputAddress',$inputAge,'$inputEmail','$inputphNO');";
+        $sql = "INSERT INTO seller(fullName, username, password, address, age, email, phoneNumber) VALUES ('$inputfullname','$inputusername','$inputnewPassword','$inputAddress',$inputAge,'$inputEmail','$inputphNO')";
         $result=$conn->query($sql);
         if ($result == TRUE) {
             echo "New record created successfully";

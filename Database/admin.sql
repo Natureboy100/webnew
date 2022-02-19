@@ -1,4 +1,4 @@
-CREATE TABLE if not exists admin(id BIGINT,fullName VARCHAR(500),username VARCHAR(500),password VARCHAR(500),address VARCHAR(500),age INT,email VARCHAR(500),phoneNumber VARCHAR(500)
+CREATE TABLE if not exists admin(id BIGINT auto_increment,fullName VARCHAR(500),username VARCHAR(500),password VARCHAR(500),address VARCHAR(500),age INT,email VARCHAR(500),phoneNumber VARCHAR(500)
 ,constraint admin_pk
     primary key (id));
 

@@ -110,10 +110,6 @@
         } else {
             echo "New Passwords don't match... Please try again.";
         }
-
-
-
-
     }
 
 

@@ -25,7 +25,7 @@
             <input type="text" id="login" class="fadeIn second" name="login" placeholder="login">
             <input type="text" id="password" class="fadeIn third" name="password" placeholder="password">
             <input type="submit" class="fadeIn fourth" value="Log In" name="bLogin">
-            <input type="button" value="Sign Up" onclick="window.location.href='../signupform.php'" >
+            <input type="button" value="Sign Up" onclick="window.location.href='seller_signup.php'" >
         </form>
 
         <!-- Remind Passowrd -->
