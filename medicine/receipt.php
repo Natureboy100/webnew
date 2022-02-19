@@ -14,7 +14,7 @@ if (!isset($_SESSION['username'])) {
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
-    <label for="ID">Enter The id of seller  </label>
+    <label for="ID">Receipt Number</label>
     <form method="post">
     <input type="text" name="seller" id="seller">
     <input type="submit" name="pID" value="View Items added to cart">

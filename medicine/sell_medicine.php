@@ -53,7 +53,6 @@ if (!isset($_SESSION['username'])) {
     <input type="submit" name="bAddToCart" value="Add To Cart">
 
     <input type="submit" name="checkOut" value="Check Out">
-
 </form>
 
 
